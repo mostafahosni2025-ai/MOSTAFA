@@ -1,0 +1,6 @@
+{
+  "name": "Load Estimation Calculator",
+  "description": "Desktop engineering overview and calculation tool for electrical load estimation across Egyptian, Saudi, IEC, and NEC standards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

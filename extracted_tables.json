@@ -1,0 +1,635 @@
+{
+  "t1": [
+    {
+      "area": 50,
+      "kva": 6,
+      "breakerA": 825
+    },
+    {
+      "area": 75,
+      "kva": 10,
+      "breakerA": 850
+    },
+    {
+      "area": 100,
+      "kva": 13,
+      "breakerA": 875
+    },
+    {
+      "area": 110,
+      "kva": 15,
+      "breakerA": 925
+    },
+    {
+      "area": 125,
+      "kva": 16,
+      "breakerA": 950
+    },
+    {
+      "area": 150,
+      "kva": 19,
+      "breakerA": 1000
+    },
+    {
+      "area": 175,
+      "kva": 22,
+      "breakerA": 1001
+    },
+    {
+      "area": 200,
+      "kva": 26,
+      "breakerA": 1025
+    },
+    {
+      "area": 225,
+      "kva": 29,
+      "breakerA": 1075
+    },
+    {
+      "area": 250,
+      "kva": 32,
+      "breakerA": 1100
+    },
+    {
+      "area": 275,
+      "kva": 34,
+      "breakerA": 1125
+    },
+    {
+      "area": 300,
+      "kva": 37,
+      "breakerA": 1150
+    },
+    {
+      "area": 325,
+      "kva": 40,
+      "breakerA": 1200
+    },
+    {
+      "area": 350,
+      "kva": 42,
+      "breakerA": 1201
+    },
+    {
+      "area": 400,
+      "kva": 375,
+      "breakerA": 45
+    },
+    {
+      "area": 400,
+      "kva": 48,
+      "breakerA": 1500
+    },
+    {
+      "area": 425,
+      "kva": 50,
+      "breakerA": 1501
+    },
+    {
+      "area": 450,
+      "kva": 53,
+      "breakerA": 1600
+    },
+    {
+      "area": 460,
+      "kva": 54,
+      "breakerA": 1700
+    },
+    {
+      "area": 475,
+      "kva": 56,
+      "breakerA": 1800
+    },
+    {
+      "area": 500,
+      "kva": 58,
+      "breakerA": 2000
+    },
+    {
+      "area": 525,
+      "kva": 61,
+      "breakerA": 2001
+    },
+    {
+      "area": 550,
+      "kva": 64,
+      "breakerA": 2100
+    },
+    {
+      "area": 575,
+      "kva": 66,
+      "breakerA": 2200
+    },
+    {
+      "area": 600,
+      "kva": 69,
+      "breakerA": 2300
+    },
+    {
+      "area": 625,
+      "kva": 72,
+      "breakerA": 2500
+    },
+    {
+      "area": 650,
+      "kva": 74,
+      "breakerA": 2501
+    },
+    {
+      "area": 675,
+      "kva": 77,
+      "breakerA": 2600
+    },
+    {
+      "area": 700,
+      "kva": 80,
+      "breakerA": 2700
+    },
+    {
+      "area": 725,
+      "kva": 82,
+      "breakerA": 2800
+    },
+    {
+      "area": 750,
+      "kva": 85,
+      "breakerA": 2900
+    },
+    {
+      "area": 775,
+      "kva": 88,
+      "breakerA": 3000
+    },
+    {
+      "area": 800,
+      "kva": 90,
+      "breakerA": 3200
+    }
+  ],
+  "t2": [
+    {
+      "area": 150,
+      "kva": 50,
+      "breakerA": 6
+    },
+    {
+      "area": 75,
+      "kva": 10,
+      "breakerA": 1125
+    },
+    {
+      "area": 100,
+      "kva": 13,
+      "breakerA": 1126
+    },
+    {
+      "area": 125,
+      "kva": 16,
+      "breakerA": 1150
+    },
+    {
+      "area": 150,
+      "kva": 19,
+      "breakerA": 1200
+    },
+    {
+      "area": 175,
+      "kva": 22,
+      "breakerA": 1300
+    },
+    {
+      "area": 200,
+      "kva": 26,
+      "breakerA": 1500
+    },
+    {
+      "area": 225,
+      "kva": 29,
+      "breakerA": 1501
+    },
+    {
+      "area": 250,
+      "kva": 32,
+      "breakerA": 1600
+    },
+    {
+      "area": 275,
+      "kva": 34,
+      "breakerA": 1800
+    },
+    {
+      "area": 300,
+      "kva": 37,
+      "breakerA": 1900
+    },
+    {
+      "area": 325,
+      "kva": 40,
+      "breakerA": 1901
+    },
+    {
+      "area": 350,
+      "kva": 42,
+      "breakerA": 2100
+    },
+    {
+      "area": 375,
+      "kva": 45,
+      "breakerA": 2200
+    },
+    {
+      "area": 400,
+      "kva": 48,
+      "breakerA": 2300
+    },
+    {
+      "area": 425,
+      "kva": 50,
+      "breakerA": 2301
+    },
+    {
+      "area": 450,
+      "kva": 53,
+      "breakerA": 2400
+    },
+    {
+      "area": 475,
+      "kva": 56,
+      "breakerA": 2500
+    },
+    {
+      "area": 500,
+      "kva": 58,
+      "breakerA": 2700
+    },
+    {
+      "area": 525,
+      "kva": 61,
+      "breakerA": 2800
+    },
+    {
+      "area": 550,
+      "kva": 64,
+      "breakerA": 2900
+    },
+    {
+      "area": 575,
+      "kva": 66,
+      "breakerA": 3000
+    },
+    {
+      "area": 600,
+      "kva": 69,
+      "breakerA": 3001
+    },
+    {
+      "area": 625,
+      "kva": 72,
+      "breakerA": 3200
+    },
+    {
+      "area": 650,
+      "kva": 74,
+      "breakerA": 3400
+    },
+    {
+      "area": 675,
+      "kva": 77,
+      "breakerA": 3500
+    },
+    {
+      "area": 700,
+      "kva": 80,
+      "breakerA": 3600
+    },
+    {
+      "area": 725,
+      "kva": 82,
+      "breakerA": 3601
+    },
+    {
+      "area": 750,
+      "kva": 85,
+      "breakerA": 4000
+    },
+    {
+      "area": 775,
+      "kva": 88,
+      "breakerA": 4200
+    },
+    {
+      "area": 800,
+      "kva": 90,
+      "breakerA": 4400
+    },
+    {
+      "area": 825,
+      "kva": 93,
+      "breakerA": 4401
+    },
+    {
+      "area": 850,
+      "kva": 96,
+      "breakerA": 4600
+    },
+    {
+      "area": 875,
+      "kva": 98,
+      "breakerA": 4800
+    },
+    {
+      "area": 900,
+      "kva": 101,
+      "breakerA": 5000
+    },
+    {
+      "area": 925,
+      "kva": 104,
+      "breakerA": 5400
+    },
+    {
+      "area": 950,
+      "kva": 106,
+      "breakerA": 5600
+    },
+    {
+      "area": 975,
+      "kva": 109,
+      "breakerA": 5800
+    },
+    {
+      "area": 1000,
+      "kva": 112,
+      "breakerA": 6000
+    }
+  ],
+  "t3": [
+    {
+      "area": 50,
+      "kva": 8,
+      "breakerA": 650
+    },
+    {
+      "area": 55,
+      "kva": 10,
+      "breakerA": 675
+    },
+    {
+      "area": 75,
+      "kva": 13,
+      "breakerA": 700
+    },
+    {
+      "area": 100,
+      "kva": 18,
+      "breakerA": 750
+    },
+    {
+      "area": 125,
+      "kva": 22,
+      "breakerA": 751
+    },
+    {
+      "area": 150,
+      "kva": 26,
+      "breakerA": 800
+    },
+    {
+      "area": 175,
+      "kva": 30,
+      "breakerA": 850
+    },
+    {
+      "area": 200,
+      "kva": 34,
+      "breakerA": 900
+    },
+    {
+      "area": 225,
+      "kva": 38,
+      "breakerA": 1000
+    },
+    {
+      "area": 250,
+      "kva": 43,
+      "breakerA": 1001
+    },
+    {
+      "area": 275,
+      "kva": 47,
+      "breakerA": 1100
+    },
+    {
+      "area": 300,
+      "kva": 51,
+      "breakerA": 1150
+    },
+    {
+      "area": 325,
+      "kva": 56,
+      "breakerA": 1200
+    },
+    {
+      "area": 350,
+      "kva": 60,
+      "breakerA": 1250
+    },
+    {
+      "area": 375,
+      "kva": 64,
+      "breakerA": 1251
+    },
+    {
+      "area": 600,
+      "kva": 376,
+      "breakerA": 65
+    },
+    {
+      "area": 400,
+      "kva": 69,
+      "breakerA": 1400
+    },
+    {
+      "area": 425,
+      "kva": 73,
+      "breakerA": 1500
+    },
+    {
+      "area": 450,
+      "kva": 77,
+      "breakerA": 1501
+    },
+    {
+      "area": 475,
+      "kva": 82,
+      "breakerA": 1600
+    },
+    {
+      "area": 500,
+      "kva": 86,
+      "breakerA": 1700
+    },
+    {
+      "area": 525,
+      "kva": 90,
+      "breakerA": 2000
+    },
+    {
+      "area": 550,
+      "kva": 94,
+      "breakerA": 2100
+    },
+    {
+      "area": 575,
+      "kva": 98,
+      "breakerA": 2200
+    }
+  ],
+  "t4": [
+    {
+      "area": 50,
+      "kva": 8,
+      "breakerA": 1025
+    },
+    {
+      "area": 75,
+      "kva": 13,
+      "breakerA": 1050
+    },
+    {
+      "area": 100,
+      "kva": 18,
+      "breakerA": 1125
+    },
+    {
+      "area": 125,
+      "kva": 22,
+      "breakerA": 1126
+    },
+    {
+      "area": 300,
+      "kva": 126,
+      "breakerA": 23
+    },
+    {
+      "area": 150,
+      "kva": 26,
+      "breakerA": 1300
+    },
+    {
+      "area": 175,
+      "kva": 30,
+      "breakerA": 1400
+    },
+    {
+      "area": 200,
+      "kva": 34,
+      "breakerA": 1500
+    },
+    {
+      "area": 225,
+      "kva": 38,
+      "breakerA": 1600
+    },
+    {
+      "area": 250,
+      "kva": 43,
+      "breakerA": 1800
+    },
+    {
+      "area": 275,
+      "kva": 47,
+      "breakerA": 1850
+    },
+    {
+      "area": 300,
+      "kva": 51,
+      "breakerA": 1851
+    },
+    {
+      "area": 325,
+      "kva": 56,
+      "breakerA": 2000
+    },
+    {
+      "area": 350,
+      "kva": 60,
+      "breakerA": 2200
+    },
+    {
+      "area": 375,
+      "kva": 64,
+      "breakerA": 2300
+    },
+    {
+      "area": 400,
+      "kva": 69,
+      "breakerA": 2301
+    },
+    {
+      "area": 425,
+      "kva": 73,
+      "breakerA": 2400
+    },
+    {
+      "area": 450,
+      "kva": 77,
+      "breakerA": 2500
+    },
+    {
+      "area": 475,
+      "kva": 82,
+      "breakerA": 2600
+    },
+    {
+      "area": 500,
+      "kva": 86,
+      "breakerA": 2701
+    },
+    {
+      "area": 525,
+      "kva": 90,
+      "breakerA": 2800
+    },
+    {
+      "area": 550,
+      "kva": 94,
+      "breakerA": 2900
+    },
+    {
+      "area": 575,
+      "kva": 98,
+      "breakerA": 3000
+    },
+    {
+      "area": 600,
+      "kva": 102,
+      "breakerA": 3100
+    },
+    {
+      "area": 625,
+      "kva": 107,
+      "breakerA": 3300
+    },
+    {
+      "area": 650,
+      "kva": 111,
+      "breakerA": 3400
+    },
+    {
+      "area": 675,
+      "kva": 115,
+      "breakerA": 3500
+    },
+    {
+      "area": 700,
+      "kva": 120,
+      "breakerA": 3600
+    },
+    {
+      "area": 725,
+      "kva": 124,
+      "breakerA": 3700
+    }
+  ]
+}
