@@ -91,7 +91,61 @@ export type OccupancyCategory =
   | 'Recreational Facilities'
   | 'Farms/Agricultural Facilities'
   | 'Fuel Stations'
-  | 'Bulk Factories';
+  | 'Bulk Factories'
+  | string;
+
+export interface SaudiCategoryItem {
+  code: string;
+  name: string;
+  label: string;
+  vaPerM2: number;
+  df: number;
+}
+
+export const SAUDI_SEC_CATEGORIES: SaudiCategoryItem[] = [
+  { code: 'C1', name: 'Normal Residential Dwelling', label: 'Normal Residential Dwelling (C1) - 116 VA/m², DF: 0.5', vaPerM2: 116, df: 0.5 },
+  { code: 'C2', name: 'Normal Commercial Shops', label: 'Normal Commercial Shops (C2) - 172 VA/m², DF: 0.6', vaPerM2: 172, df: 0.6 },
+  { code: 'C3', name: 'Furnished Flats', label: 'Furnished Flats (C3) - 140 VA/m², DF: 0.6', vaPerM2: 140, df: 0.6 },
+  { code: 'C4', name: 'Hotels', label: 'Hotels (C4) - 192 VA/m², DF: 0.65', vaPerM2: 192, df: 0.65 },
+  { code: 'C5', name: 'Malls', label: 'Malls (C5) - 204 VA/m², DF: 0.6', vaPerM2: 204, df: 0.6 },
+  { code: 'C6', name: 'Restaurants', label: 'Restaurants (C6) - 188 VA/m², DF: 0.6', vaPerM2: 188, df: 0.6 },
+  { code: 'C7', name: 'Offices', label: 'Offices (C7) - 176 VA/m², DF: 0.6', vaPerM2: 176, df: 0.6 },
+  { code: 'C8', name: 'Schools', label: 'Schools (C8) - 144 VA/m², DF: 0.7', vaPerM2: 144, df: 0.7 },
+  { code: 'C9', name: 'Mosques', label: 'Mosques (C9) - 148 VA/m², DF: 0.8', vaPerM2: 148, df: 0.8 },
+  { code: 'C10', name: 'Mezzanine in Hotel', label: 'Mezzanine in Hotel (C10) - 80 VA/m², DF: 0.65', vaPerM2: 80, df: 0.65 },
+  { code: 'C11', name: 'Common Area/Services in Buildings', label: 'Common Area/Services in Buildings (C11) - 48 VA/m², DF: 0.7', vaPerM2: 48, df: 0.7 },
+  { code: 'C12', name: 'Public Services Facilities', label: 'Public Services Facilities (C12) - 40 VA/m², DF: 0.65', vaPerM2: 40, df: 0.65 },
+  { code: 'C13', name: 'Indoor Parking', label: 'Indoor Parking (C13) - 24 VA/m², DF: 0.7', vaPerM2: 24, df: 0.7 },
+  { code: 'C14', name: 'Outdoor Parking', label: 'Outdoor Parking (C14) - 4 VA/m², DF: 0.8', vaPerM2: 4, df: 0.8 },
+  { code: 'C15', name: 'Streets Lighting', label: 'Streets Lighting (C15) - 4 VA/m², DF: 0.8', vaPerM2: 4, df: 0.8 },
+  { code: 'C16', name: 'Parks & Garden', label: 'Parks & Garden (C16) - 3.2 VA/m², DF: 0.7', vaPerM2: 3.2, df: 0.7 },
+  { code: 'C17', name: 'Open Spaces', label: 'Open Spaces (C17) - 2.4 VA/m², DF: 0.8', vaPerM2: 2.4, df: 0.8 },
+  { code: 'C18', name: 'Hospitals \\ Medical Facilities', label: 'Hospitals \\ Medical Facilities (C18) - 200 VA/m², DF: 0.7', vaPerM2: 200, df: 0.7 },
+  { code: 'C19', name: 'Medical Clinics', label: 'Medical Clinics (C19) - 180 VA/m², DF: 0.6', vaPerM2: 180, df: 0.6 },
+  { code: 'C20', name: 'Universities / High Educational Facilities', label: 'Universities / High Educational Facilities (C20) - 196 VA/m², DF: 0.7', vaPerM2: 196, df: 0.7 },
+  { code: 'C21', name: 'Light Industries', label: 'Light Industries (C21) - 224 VA/m², DF: 0.8', vaPerM2: 224, df: 0.8 },
+  { code: 'C22', name: 'Workshops', label: 'Workshops (C22) - 64 VA/m², DF: 0.8', vaPerM2: 64, df: 0.8 },
+  { code: 'C23', name: 'Cooling Stores', label: 'Cooling Stores (C23) - 208 VA/m², DF: 0.8', vaPerM2: 208, df: 0.8 },
+  { code: 'C24', name: 'Warehouses', label: 'Warehouses (C24) - 56 VA/m², DF: 0.6', vaPerM2: 56, df: 0.6 },
+  { code: 'C25', name: 'Community Halls', label: 'Community Halls (C25) - 184 VA/m², DF: 0.7', vaPerM2: 184, df: 0.7 },
+  { code: 'C26', name: 'Recreational Facilities', label: 'Recreational Facilities (C26) - 160 VA/m², DF: 0.7', vaPerM2: 160, df: 0.7 },
+  { code: 'C27', name: 'Farms / Agricultural Facilities', label: 'Farms / Agricultural Facilities (C27) - 104 VA/m², DF: 0.8', vaPerM2: 104, df: 0.8 },
+  { code: 'C28', name: 'Fuel Stations', label: 'Fuel Stations (C28) - 72 VA/m², DF: 0.6', vaPerM2: 72, df: 0.6 },
+  { code: 'C29', name: 'Bulk Factories', label: 'Bulk Factories (C29) - 236 VA/m², DF: 0.8', vaPerM2: 236, df: 0.8 },
+];
+
+export const getSaudiCategoryByCodeOrName = (val: string | undefined): SaudiCategoryItem | undefined => {
+  if (!val) return undefined;
+  const trimmed = val.trim();
+  return SAUDI_SEC_CATEGORIES.find(
+    (c) =>
+      c.code.toLowerCase() === trimmed.toLowerCase() ||
+      c.name.toLowerCase() === trimmed.toLowerCase() ||
+      c.label.toLowerCase() === trimmed.toLowerCase() ||
+      trimmed.toLowerCase().includes(`(${c.code.toLowerCase()})`) ||
+      c.name.toLowerCase().replace(/[^a-z0-9]/g, '') === trimmed.toLowerCase().replace(/[^a-z0-9]/g, '')
+  );
+};
 
 const OCCUPANCY_CATEGORIES: { id: OccupancyCategory; nameEn: string; nameAr: string }[] = [
   { id: 'Normal Residential Dwelling', nameEn: 'Normal Residential Dwelling', nameAr: 'سكن اعتيادي / وحدات سكنية' },
@@ -122,6 +176,10 @@ const OCCUPANCY_CATEGORIES: { id: OccupancyCategory; nameEn: string; nameAr: str
   { id: 'Farms/Agricultural Facilities', nameEn: 'Farms/Agricultural Facilities', nameAr: 'مزارع ومنشآت زراعية وإنتاجية' },
   { id: 'Fuel Stations', nameEn: 'Fuel Stations', nameAr: 'محطات وقود وخدمات سيارات' },
   { id: 'Bulk Factories', nameEn: 'Bulk Factories', nameAr: 'مصانع كبرى ومصانع ثقيلة' },
+];
+
+export const STANDARD_SCHNEIDER_TRANSFORMER_SIZES = [
+  100, 160, 200, 250, 315, 400, 500, 630, 800, 1000, 1250, 1600, 2000, 2500,
 ];
 
 /**
@@ -333,6 +391,11 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
   const [buildingType, setBuildingType] = useState<OccupancyCategory>('Offices');
   const [areaSquareMeters, setAreaSquareMeters] = useState<number>(3500);
 
+  // Saudi SEC Table 18/19 state (Density & DF available in state)
+  const [saudiSelectedCategory, setSaudiSelectedCategory] = useState<SaudiCategoryItem>(SAUDI_SEC_CATEGORIES[6]); // Offices (C7)
+  const [saudiLoadDensityVA, setSaudiLoadDensityVA] = useState<number>(176);
+  const [saudiDemandFactor, setSaudiDemandFactor] = useState<number>(0.6);
+
   // Helper calculations for building totals
   const calcBuildingTotalArea = (floors: FloorRowItem[]) =>
     floors.reduce((sum, f) => sum + (Number(f.floorsCount) || 0) * (Number(f.areaPerFloor) || 0), 0);
@@ -346,14 +409,51 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
     return /basement|بدروم|بادروم|bsmt/i.test(name.trim());
   };
 
-  const getFloorAppliedDensity = (floorName: string): number => {
+  const getEgyptianAppliedDensityForType = (floorName: string, bType?: string): number => {
     if (isBasementFloorName(floorName)) {
       return 3;
     }
+    const typeStr = bType || buildingType;
     if (selectedStandardId === 'egypt' && egyptSubStandard === 'acud') {
+      const lower = typeStr.toLowerCase();
+      if (lower.includes('resident') || lower.includes('flat') || lower.includes('dwelling') || lower.includes('سكن')) return 8;
+      if (lower.includes('office') || lower.includes('admin') || lower.includes('إدار')) return 10;
+      if (lower.includes('shop') || lower.includes('mall') || lower.includes('commercial') || lower.includes('تجار')) return 12;
+      if (lower.includes('hospital') || lower.includes('مستشف')) return 20;
+      if (lower.includes('bank') || lower.includes('بنوك')) return 16;
+      if (lower.includes('clinic') || lower.includes('عياد')) return 17.5;
+      if (lower.includes('hotel') || lower.includes('فندق') || lower.includes('فنادق')) return 18;
+      if (lower.includes('universit') || lower.includes('جامع')) return 15;
+      if (lower.includes('school') || lower.includes('مدارس')) return 14;
+      if (lower.includes('mosque') || lower.includes('church') || lower.includes('مسجد') || lower.includes('كنيس')) return 8;
+      if (lower.includes('recreation') || lower.includes('sport') || lower.includes('نادي') || lower.includes('رياض')) return 12;
+      if (lower.includes('factor') || lower.includes('industr') || lower.includes('صناع') || lower.includes('مصانع')) return 30;
+      if (lower.includes('fuel') || lower.includes('station') || lower.includes('وقود') || lower.includes('بنزين')) return 8;
+      if (lower.includes('park') || lower.includes('garden') || lower.includes('حدائق')) return 0.5;
+      if (lower.includes('public') || lower.includes('servic') || lower.includes('خدمات')) return 5;
       return getAcudAppliedDensity();
     }
-    return getEgyptianAppliedLoadDensity();
+    const isRes = /resident|flat|dwelling|سكن|شقق/i.test(typeStr);
+    if (egyptLocationType === 'villages') {
+      return isRes ? 2 : 5;
+    }
+    if (egyptCityDistrictType === 'upscale') {
+      return isRes ? 8 : 10;
+    }
+    return isRes ? 4 : 10;
+  };
+
+  const getFloorAppliedDensity = (floorName: string, bType?: string): number => {
+    const currentBldType = bType || buildingType;
+    if (selectedStandardId === 'saudi') {
+      if (isBasementFloorName(floorName)) {
+        return 2.4; // 24 VA/m² (Indoor Parking C13) = 2.4 kVA/100m²
+      }
+      const saudiCat = getSaudiCategoryByCodeOrName(currentBldType);
+      const va = saudiCat ? saudiCat.vaPerM2 : saudiLoadDensityVA;
+      return va / 10; // convert VA/m² to kVA/100m²: (va * 100) / 1000 = va / 10
+    }
+    return getEgyptianAppliedDensityForType(floorName, currentBldType);
   };
 
   // Buildings Details list state (Always 1 visible building by default)
@@ -400,7 +500,7 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
       setNumberOfAreas('');
       return;
     }
-    const count = Math.max(1, Math.min(10, parseInt(cleanStr, 10) || 1));
+    const count = Math.max(1, parseInt(cleanStr, 10) || 1);
     setNumberOfAreas(count);
 
     setBuildingsList((prev) => {
@@ -417,18 +517,22 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
 
         for (let i = prev.length; i < count; i++) {
           const nextNum = i + 1;
+          const defaultDf = selectedStandardId === 'saudi' ? 0.6 : 0.8;
           const clonedFloors: FloorRowItem[] = sourceFloors.map((fl, fIdx) => ({
             id: `f-${Date.now()}-${i}-${fIdx}-${Math.random().toString(36).substring(2, 6)}`,
             name: fl.name,
             floorsCount: fl.floorsCount,
             areaPerFloor: fl.areaPerFloor,
-            demandFactor: fl.demandFactor !== undefined ? fl.demandFactor : 0.8,
+            demandFactor: fl.demandFactor !== undefined ? fl.demandFactor : (isBasementFloorName(fl.name) ? (selectedStandardId === 'saudi' ? 0.7 : 0.8) : defaultDf),
           }));
+          const defaultBldType = selectedStandardId === 'saudi'
+            ? `${SAUDI_SEC_CATEGORIES[6].name} (${SAUDI_SEC_CATEGORIES[6].code})`
+            : (prev[0]?.buildingType || 'Offices');
           added.push({
             id: `bld-${Date.now()}-${i}-${Math.random().toString(36).substring(2, 6)}`,
             name: isAr ? `مبنى ${nextNum}` : `Building ${nextNum}`,
-            buildingType: prev[0]?.buildingType || buildingType,
-            isTypeCustomized: false,
+            buildingType: defaultBldType,
+            isTypeCustomized: true,
             floorsCount: calcBuildingTotalFloors(clonedFloors),
             floors: clonedFloors,
             totalArea: calcBuildingTotalArea(clonedFloors),
@@ -510,10 +614,67 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
     });
   }, [buildingType]);
 
-  const handleUpdateBuildingType = (buildingId: string, type: OccupancyCategory) => {
+  // When switching to Saudi Code, ensure default SEC category (C7) and DF are synced
+  useEffect(() => {
+    if (selectedStandardId === 'saudi') {
+      const match = getSaudiCategoryByCodeOrName(buildingType) || SAUDI_SEC_CATEGORIES[6];
+      setSaudiSelectedCategory(match);
+      setSaudiLoadDensityVA(match.vaPerM2);
+      setSaudiDemandFactor(match.df);
+      const newTypeStr = `${match.name} (${match.code})`;
+      if (!buildingType.includes('(')) {
+        setBuildingType(newTypeStr as any);
+      }
+      setBuildingsList((prev) =>
+        prev.map((b, idx) => {
+          if (idx === 0 || !b.isTypeCustomized) {
+            return {
+              ...b,
+              buildingType: newTypeStr as any,
+              floors: b.floors.map((fl) => ({
+                ...fl,
+                demandFactor: match.df,
+              })),
+            };
+          }
+          return b;
+        })
+      );
+    }
+  }, [selectedStandardId]);
+
+  const handleBuildingCategoryChange = (buildingId: string, newTypeStrOrCode: string) => {
     setBuildingsList((prev) =>
-      prev.map((b) => (b.id === buildingId ? { ...b, buildingType: type, isTypeCustomized: true } : b))
+      prev.map((b) => {
+        if (b.id !== buildingId) return b;
+        if (selectedStandardId === 'saudi') {
+          const saudiCat =
+            SAUDI_SEC_CATEGORIES.find((c) => c.code === newTypeStrOrCode) ||
+            getSaudiCategoryByCodeOrName(newTypeStrOrCode);
+          if (saudiCat) {
+            const newTypeStr = `${saudiCat.name} (${saudiCat.code})`;
+            return {
+              ...b,
+              buildingType: newTypeStr as any,
+              isTypeCustomized: true,
+              floors: b.floors.map((fl) => ({
+                ...fl,
+                demandFactor: isBasementFloorName(fl.name) ? 0.7 : saudiCat.df,
+              })),
+            };
+          }
+        }
+        return {
+          ...b,
+          buildingType: newTypeStrOrCode as any,
+          isTypeCustomized: true,
+        };
+      })
     );
+  };
+
+  const handleUpdateBuildingType = (buildingId: string, type: OccupancyCategory) => {
+    handleBuildingCategoryChange(buildingId, type);
   };
 
   const handleUpdateBuildingName = (buildingId: string, name: string) => {
@@ -526,12 +687,13 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
     setBuildingsList((prev) =>
       prev.map((b) => {
         if (b.id !== buildingId) return b;
+        const defaultDf = selectedStandardId === 'saudi' ? saudiDemandFactor : 0.8;
         const newRow: FloorRowItem = {
           id: `f-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
           name: isAr ? 'دور متكرر (Typical Floor)' : 'Typical Floor',
           floorsCount: 1,
           areaPerFloor: 300,
-          demandFactor: 0.8,
+          demandFactor: defaultDf,
         };
         const newFloors = [...b.floors, newRow];
         return {
@@ -557,13 +719,14 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
 
         const sampleFloor = existingBasements[0] || b.floors[0];
         const defaultArea = sampleFloor ? (Number(sampleFloor.areaPerFloor) || 500) : 500;
+        const defaultDf = selectedStandardId === 'saudi' ? 0.7 : 0.8;
 
         const newRow: FloorRowItem = {
           id: `f-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
           name: basementName,
           floorsCount: 1,
           areaPerFloor: defaultArea,
-          demandFactor: 0.8,
+          demandFactor: defaultDf,
         };
         const newFloors = [...b.floors, newRow];
         return {
@@ -650,21 +813,24 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
           { id: 'f-3', name: isAr ? 'بدروم (Basement Parking)' : 'Basement Parking', floorsCount: 1, areaPerFloor: 500, demandFactor: 0.8 },
         ];
 
+    const defaultDf = selectedStandardId === 'saudi' ? 0.6 : 0.8;
     const clonedFloors: FloorRowItem[] = sourceFloors.map((fl, idx) => ({
       id: `f-${Date.now()}-${idx}-${Math.random().toString(36).substring(2, 6)}`,
       name: fl.name,
       floorsCount: fl.floorsCount,
       areaPerFloor: fl.areaPerFloor,
-      demandFactor: fl.demandFactor !== undefined ? fl.demandFactor : 0.8,
+      demandFactor: fl.demandFactor !== undefined ? fl.demandFactor : (isBasementFloorName(fl.name) ? (selectedStandardId === 'saudi' ? 0.7 : 0.8) : defaultDf),
     }));
 
-    const firstBldType = buildingsList.length > 0 ? buildingsList[0].buildingType : buildingType;
+    const defaultBuildingType = selectedStandardId === 'saudi'
+      ? `${SAUDI_SEC_CATEGORIES[6].name} (${SAUDI_SEC_CATEGORIES[6].code})`
+      : (buildingsList.length > 0 ? buildingsList[0].buildingType : 'Offices');
 
     const newBuilding: BuildingItem = {
       id: `bld-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
       name: isAr ? `مبنى ${nextNumber}` : `Building ${nextNumber}`,
-      buildingType: firstBldType,
-      isTypeCustomized: false,
+      buildingType: defaultBuildingType,
+      isTypeCustomized: true,
       floorsCount: calcBuildingTotalFloors(clonedFloors),
       floors: clonedFloors,
       totalArea: calcBuildingTotalArea(clonedFloors),
@@ -745,6 +911,10 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
 
   // Detailed Load Summary: Diversity Factor & row Demand Factor overrides
   const [projectDiversityFactor, setProjectDiversityFactor] = useState<number | string>(1.0);
+  const [spareCapacityPercent, setSpareCapacityPercent] = useState<number | string>(20);
+  const [transformerLoadingRatio, setTransformerLoadingRatio] = useState<number | string>(80);
+  const [selectedTransformerSize, setSelectedTransformerSize] = useState<number>(1000);
+  const [transformerQuantity, setTransformerQuantity] = useState<number | string>(1);
   const [buildingsDemandFactorOverrides, setBuildingsDemandFactorOverrides] = useState<Record<string, number | string>>({});
   const [pumpsDemandFactorOverrides, setPumpsDemandFactorOverrides] = useState<Record<string, number | string>>({});
   const [extraLoadsDemandFactorOverrides, setExtraLoadsDemandFactorOverrides] = useState<Record<string, number | string>>({});
@@ -1130,7 +1300,7 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
       const buildingItems = buildingsList.map((bld, idx) => {
         let connected = bld.floors.reduce((sum, fl) => {
           const rowSubtotal = (Number(fl.floorsCount) || 0) * (Number(fl.areaPerFloor) || 0);
-          const density = getFloorAppliedDensity(fl.name);
+          const density = getFloorAppliedDensity(fl.name, bld.buildingType);
           return sum + (rowSubtotal * density) / 100;
         }, 0);
 
@@ -1140,7 +1310,7 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
 
         const floorBreakdownDemand = bld.floors.reduce((sum, fl) => {
           const rowSubtotal = (Number(fl.floorsCount) || 0) * (Number(fl.areaPerFloor) || 0);
-          const density = getFloorAppliedDensity(fl.name);
+          const density = getFloorAppliedDensity(fl.name, bld.buildingType);
           const conn = (rowSubtotal * density) / 100;
           const df = fl.demandFactor !== undefined ? Number(fl.demandFactor) || 0.8 : 0.8;
           return sum + conn * df;
@@ -1284,7 +1454,7 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
           floorRowObj.height = 22;
 
           const floorSubtotalArea = (Number(fl.floorsCount) || 0) * (Number(fl.areaPerFloor) || 0);
-          const floorDensityKva = getFloorAppliedDensity(fl.name);
+          const floorDensityKva = getFloorAppliedDensity(fl.name, b.bld.buildingType);
           const floorDensityVaPerM2 = floorDensityKva * 10;
           const floorConnectedKva = (floorSubtotalArea * floorDensityKva) / 100;
           const floorDf = fl.demandFactor !== undefined ? Number(fl.demandFactor) || 0.8 : 0.8;
@@ -1537,12 +1707,20 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
       const diversityFactorVal = projectDiversityFactor === '' ? 1.0 : Math.max(0, Number(projectDiversityFactor) || 1.0);
       const totalLoadAfterDiversity = totalDemandBeforeDiversity * diversityFactorVal;
 
-      // 1. ADD 20% SPARE CAPACITY (Logic & Rows)
-      const spareCapacityVal = '20% (1.20)';
-      const totalLoadWithSpare = totalLoadAfterDiversity * 1.20;
-      const loadingRatio = 0.80; // 80%
-      const requiredTransformerKva = totalLoadWithSpare / loadingRatio;
-      const selectedTransformerKva = getSelectedTransformerKva(requiredTransformerKva);
+      // 1. DYNAMIC SPARE CAPACITY & TRANSFORMER VALUES FROM STATE
+      const numericSparePercent = spareCapacityPercent === '' ? 20 : Math.max(0, Number(spareCapacityPercent) || 0);
+      const spareMultiplier = 1 + (numericSparePercent / 100);
+      const spareCapacityVal = `${numericSparePercent}% (${spareMultiplier.toFixed(2)})`;
+      const totalLoadWithSpare = totalLoadAfterDiversity * spareMultiplier;
+
+      const numericLoadingRatio = transformerLoadingRatio === '' ? 80 : Math.max(1, Number(transformerLoadingRatio) || 80);
+      const loadingRatioDecimal = numericLoadingRatio / 100;
+      const loadingRatioText = `${numericLoadingRatio}% (${loadingRatioDecimal.toFixed(2)})`;
+      const requiredTransformerKva = totalLoadWithSpare / loadingRatioDecimal;
+
+      const numericQty = transformerQuantity === '' ? 1 : Math.max(1, parseInt(String(transformerQuantity), 10) || 1);
+      const selectedSize = Number(selectedTransformerSize) || 1000;
+      const selectedTransText = numericQty > 1 ? `${numericQty} x ${selectedSize} kVA` : `${selectedSize} kVA`;
 
       // 2. CHANGE COLORS (No Gray!): Very light, elegant Blue #EFF6FF with dark text
       const summaryFill = {
@@ -1602,24 +1780,24 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
       }, '#,##0.00');
 
       const spareCapacityRow = currentRowIndex;
-      // Summary Row 4: SPARE CAPACITY (20%)
-      formatSummaryRow(currentRowIndex++, 'SPARE CAPACITY (20%)', spareCapacityVal);
+      // Summary Row 4: SPARE CAPACITY (Dynamic from state)
+      formatSummaryRow(currentRowIndex++, `SPARE CAPACITY (${numericSparePercent}%)`, spareCapacityVal);
 
       const totalWithSpareRow = currentRowIndex;
       // Summary Row 5: TOTAL LOAD WITH SPARE (KVA)
       formatSummaryRow(currentRowIndex++, 'TOTAL LOAD WITH SPARE (KVA)', {
-        formula: `J${totalAfterDiversityRow}*1.20`,
+        formula: `J${totalAfterDiversityRow}*${spareMultiplier.toFixed(2)}`,
         result: totalLoadWithSpare,
       }, '#,##0.00');
 
       const loadingRatioRow = currentRowIndex;
-      // Summary Row 6: TRANSFORMER LOADING RATIO
-      formatSummaryRow(currentRowIndex++, 'TRANSFORMER LOADING RATIO', '80% (0.80)');
+      // Summary Row 6: TRANSFORMER LOADING RATIO (Dynamic from state)
+      formatSummaryRow(currentRowIndex++, 'TRANSFORMER LOADING RATIO', loadingRatioText);
 
       const requiredTransformerRow = currentRowIndex;
       // Summary Row 7: REQUIRED TRANSFORMER (KVA)
       formatSummaryRow(currentRowIndex++, 'REQUIRED TRANSFORMER (KVA)', {
-        formula: `J${totalWithSpareRow}/0.80`,
+        formula: `J${totalWithSpareRow}/${loadingRatioDecimal.toFixed(2)}`,
         result: requiredTransformerKva,
       }, '#,##0.00');
 
@@ -1630,15 +1808,8 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
 
       const selectedTransformerRow = currentRowIndex;
       // Summary Row 8: SELECTED TRANSFORMER (KVA)
-      // Dynamic Excel formula matching smallest standard size >= Required Transformer
-      const transSizeStartRow = selectedTransformerRow + 5;
-      const transSizeEndRow = transSizeStartRow + standardTransformerSizes.length - 1;
-      const selectedTransFormula = `IF(J${requiredTransformerRow}<=A${transSizeStartRow},A${transSizeStartRow},IF(J${requiredTransformerRow}>A${transSizeEndRow},CEILING(J${requiredTransformerRow},500),INDEX(A${transSizeStartRow}:A${transSizeEndRow},IF(ISNUMBER(MATCH(J${requiredTransformerRow},A${transSizeStartRow}:A${transSizeEndRow},0)),MATCH(J${requiredTransformerRow},A${transSizeStartRow}:A${transSizeEndRow},0),MATCH(J${requiredTransformerRow},A${transSizeStartRow}:A${transSizeEndRow},1)+1))))`;
-
-      formatSummaryRow(currentRowIndex++, 'SELECTED TRANSFORMER (KVA)', {
-        formula: selectedTransFormula,
-        result: selectedTransformerKva,
-      }, '#,##0" kVA"');
+      // Formatted string: "{quantity} x {size} kVA" or "{size} kVA"
+      formatSummaryRow(currentRowIndex++, 'SELECTED TRANSFORMER (KVA)', selectedTransText);
 
       const summaryEndRow = currentRowIndex - 1;
 
@@ -1691,7 +1862,7 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
       currentRowIndex++;
 
       standardTransformerSizes.forEach((size) => {
-        const isMatch = size === selectedTransformerKva;
+        const isMatch = size === selectedSize;
         const sizeRow = worksheet.getRow(currentRowIndex);
         sizeRow.height = 24;
 
@@ -1702,9 +1873,9 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
         c1.border = thinBorder;
 
         const c2 = sizeRow.getCell(2);
-        // Smart Selection formula: check if size in Col A matches the selected transformer in summary
+        // Smart Selection: check if size matches user selectedSize
         c2.value = {
-          formula: `IF(A${currentRowIndex}=J${selectedTransformerRow},"SELECTED (المحول المختار)","—")`,
+          formula: `IF(A${currentRowIndex}=${selectedSize},"SELECTED (المحول المختار)","—")`,
           result: isMatch ? 'SELECTED (المحول المختار)' : '—',
         };
         c2.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
@@ -1886,31 +2057,70 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                 </div>
 
                 {/* Row 2: BUILDING OCCUPANCY CATEGORY (Full width) */}
+                {/* Row 2: BUILDING OCCUPANCY CATEGORY (Full width) */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-gray-300 mb-2">
                     {isAr ? 'فئة إشغال المبنى (Building Occupancy Category)' : 'Building Occupancy Category'}
                   </label>
                   <select
-                    value={buildingType}
-                    onChange={(e) => setBuildingType(e.target.value as OccupancyCategory)}
+                    value={
+                      selectedStandardId === 'saudi'
+                        ? (getSaudiCategoryByCodeOrName(buildingType)?.code || 'C7')
+                        : buildingType
+                    }
+                    onChange={(e) => {
+                      if (selectedStandardId === 'saudi') {
+                        const saudiCat = SAUDI_SEC_CATEGORIES.find((c) => c.code === e.target.value);
+                        if (saudiCat) {
+                          setSaudiSelectedCategory(saudiCat);
+                          setSaudiLoadDensityVA(saudiCat.vaPerM2);
+                          setSaudiDemandFactor(saudiCat.df);
+                          const newTypeStr = `${saudiCat.name} (${saudiCat.code})`;
+                          setBuildingType(newTypeStr as any);
+                          setBuildingsList((prev) =>
+                            prev.map((b, idx) => {
+                              if (idx === 0 || !b.isTypeCustomized) {
+                                return {
+                                  ...b,
+                                  buildingType: newTypeStr as any,
+                                  floors: b.floors.map((fl) => ({
+                                    ...fl,
+                                    demandFactor: saudiCat.df,
+                                  })),
+                                };
+                              }
+                              return b;
+                            })
+                          );
+                        }
+                      } else {
+                        setBuildingType(e.target.value as OccupancyCategory);
+                      }
+                    }}
                     className="w-full bg-[#F8FAFC] dark:bg-gray-900 hover:bg-slate-50 dark:hover:bg-gray-800 border border-slate-300 dark:border-gray-600 text-slate-900 dark:text-white text-sm font-semibold rounded-xl p-3 focus:ring-2 focus:ring-[#1E3A8A] focus:border-[#1E3A8A] focus:outline-hidden transition-all shadow-2xs cursor-pointer"
                   >
-                    {OCCUPANCY_CATEGORIES.map((cat) => (
-                      <option key={cat.id} value={cat.id} className="dark:bg-gray-900 dark:text-white">
-                        {cat.nameEn}
-                      </option>
-                    ))}
+                    {selectedStandardId === 'saudi'
+                      ? SAUDI_SEC_CATEGORIES.map((cat) => (
+                          <option key={cat.code} value={cat.code} className="dark:bg-gray-900 dark:text-white">
+                            {cat.label}
+                          </option>
+                        ))
+                      : OCCUPANCY_CATEGORIES.map((cat) => (
+                          <option key={cat.id} value={cat.id} className="dark:bg-gray-900 dark:text-white">
+                            {cat.nameEn}
+                          </option>
+                        ))}
                   </select>
                 </div>
 
-                {/* Row 3: NUMBER OF BUILDINGS / AREAS (Min: 1, Max: 10) */}
+                {/* Row 3: NUMBER OF BUILDINGS / AREAS (Min: 1) */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-gray-300">
                       {isAr ? 'عدد المباني / المساحات (Number of Buildings / Areas)' : 'Number of Buildings / Areas'}
                     </label>
                     <span className="text-2xs font-bold text-slate-500 dark:text-gray-400">
-                      {isAr ? 'الحد الأدنى: 1 · الحد الأقصى: 10' : 'Min: 1 · Max: 10'}
+                      {isAr ? 'الحد الأدنى: 1' : 'Min: 1'}
                     </span>
                   </div>
                   <div className="relative" dir="ltr">
@@ -1956,7 +2166,9 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                       ? 'grid-cols-1'
                       : buildingAreas.length === 2
                       ? 'grid-cols-1 sm:grid-cols-2'
-                      : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                      : buildingAreas.length === 3
+                      ? 'grid-cols-1 md:grid-cols-3'
+                      : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
                   }`}>
                     {buildingAreas.map((areaVal, idx) => (
                       <div key={idx} className="bg-[#F8FAFC] dark:bg-gray-900/60 p-3 rounded-xl border border-slate-200 dark:border-gray-700 space-y-1.5">
@@ -2771,15 +2983,48 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                           )}
                         </div>
                         <select
-                          value={bld.buildingType}
-                          onChange={(e) => handleUpdateBuildingType(bld.id, e.target.value as OccupancyCategory)}
+                          value={
+                            selectedStandardId === 'saudi'
+                              ? (getSaudiCategoryByCodeOrName(bld.buildingType)?.code || 'C7')
+                              : bld.buildingType
+                          }
+                          onChange={(e) => {
+                            if (selectedStandardId === 'saudi') {
+                              const saudiCat = SAUDI_SEC_CATEGORIES.find((c) => c.code === e.target.value);
+                              if (saudiCat) {
+                                const newTypeStr = `${saudiCat.name} (${saudiCat.code})`;
+                                setBuildingsList((prev) =>
+                                  prev.map((b) => {
+                                    if (b.id !== bld.id) return b;
+                                    return {
+                                      ...b,
+                                      buildingType: newTypeStr as any,
+                                      isTypeCustomized: true,
+                                      floors: b.floors.map((fl) => ({
+                                        ...fl,
+                                        demandFactor: saudiCat.df,
+                                      })),
+                                    };
+                                  })
+                                );
+                                return;
+                              }
+                            }
+                            handleUpdateBuildingType(bld.id, e.target.value as OccupancyCategory);
+                          }}
                           className="w-full bg-white dark:bg-gray-900 hover:bg-slate-50 dark:hover:bg-gray-800 border border-slate-300 dark:border-gray-600 text-slate-900 dark:text-white text-sm font-semibold rounded-xl p-3 focus:ring-2 focus:ring-[#1E3A8A] focus:border-[#1E3A8A] focus:outline-hidden transition-all shadow-2xs cursor-pointer"
                         >
-                          {OCCUPANCY_CATEGORIES.map((cat) => (
-                            <option key={cat.id} value={cat.id} className="dark:bg-gray-900 dark:text-white">
-                              {cat.nameEn} — ({cat.nameAr})
-                            </option>
-                          ))}
+                          {selectedStandardId === 'saudi'
+                            ? SAUDI_SEC_CATEGORIES.map((cat) => (
+                                <option key={cat.code} value={cat.code} className="dark:bg-gray-900 dark:text-white">
+                                  {cat.label}
+                                </option>
+                              ))
+                            : OCCUPANCY_CATEGORIES.map((cat) => (
+                                <option key={cat.id} value={cat.id} className="dark:bg-gray-900 dark:text-white">
+                                  {cat.nameEn} — ({cat.nameAr})
+                                </option>
+                              ))}
                         </select>
                       </div>
 
@@ -2872,13 +3117,13 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                       {(() => {
                         const bldConnectedLoadSum = bld.floors.reduce((sum, fl) => {
                           const rowSubtotal = (Number(fl.floorsCount) || 0) * (Number(fl.areaPerFloor) || 0);
-                          const density = getFloorAppliedDensity(fl.name);
+                          const density = getFloorAppliedDensity(fl.name, bld.buildingType);
                           return sum + (rowSubtotal * density) / 100;
                         }, 0);
 
                         const bldDemandLoadSum = bld.floors.reduce((sum, fl) => {
                           const rowSubtotal = (Number(fl.floorsCount) || 0) * (Number(fl.areaPerFloor) || 0);
-                          const density = getFloorAppliedDensity(fl.name);
+                          const density = getFloorAppliedDensity(fl.name, bld.buildingType);
                           const connLoad = (rowSubtotal * density) / 100;
                           const df = fl.demandFactor !== undefined ? Number(fl.demandFactor) || 0.8 : 0.8;
                           return sum + connLoad * df;
@@ -2906,7 +3151,11 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                                     {isAr ? 'الإجمالي (SUBTOTAL)' : 'SUBTOTAL (M²)'}
                                   </th>
                                   <th className="py-2.5 px-3 w-36 text-center border-r border-slate-200 dark:border-gray-600 rtl:border-r-0 rtl:border-l">
-                                    {isAr ? 'كثافة الحمل (APPLIED LOAD DENSITY)' : 'APPLIED LOAD DENSITY (kVA/m²)'}
+                                    {isAr
+                                      ? 'كثافة الحمل (APPLIED LOAD DENSITY)'
+                                      : selectedStandardId === 'saudi'
+                                      ? 'APPLIED LOAD DENSITY (VA/m²)'
+                                      : 'APPLIED LOAD DENSITY (kVA/100m²)'}
                                   </th>
                                   <th className="py-2.5 px-3 w-36 text-right rtl:text-left border-r border-slate-200 dark:border-gray-600 rtl:border-r-0 rtl:border-l">
                                     {isAr ? 'الحمل التوصيلي (TOTAL CONNECTED LOAD)' : 'TOTAL CONNECTED LOAD (kVA)'}
@@ -2926,7 +3175,7 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                                 {bld.floors.map((fl) => {
                                   const rowSubtotal = (Number(fl.floorsCount) || 0) * (Number(fl.areaPerFloor) || 0);
                                   const isBasement = isBasementFloorName(fl.name);
-                                  const appliedDensity = getFloorAppliedDensity(fl.name);
+                                  const appliedDensity = getFloorAppliedDensity(fl.name, bld.buildingType);
                                   const connectedLoadKva = (rowSubtotal * appliedDensity) / 100;
                                   const demandFactor = fl.demandFactor !== undefined ? Number(fl.demandFactor) || 0.8 : 0.8;
                                   const demandLoadKva = connectedLoadKva * demandFactor;
@@ -3038,8 +3287,17 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                                             ? 'bg-amber-100 dark:bg-amber-300 text-gray-900 border-amber-300'
                                             : 'bg-yellow-200/90 dark:bg-yellow-300 text-gray-900 border-yellow-400'
                                         }`}>
-                                          <span dir="ltr" className="text-gray-900">{formatEnglishNumber(appliedDensity, 0, 1)}</span>
-                                          <span className="text-[10px] font-bold opacity-80 uppercase text-gray-900">kVA/100m²</span>
+                                          {selectedStandardId === 'saudi' ? (
+                                            <>
+                                              <span dir="ltr" className="text-gray-900">{formatEnglishNumber(appliedDensity * 10, 0, 1)}</span>
+                                              <span className="text-[10px] font-bold opacity-80 uppercase text-gray-900">VA/m²</span>
+                                            </>
+                                          ) : (
+                                            <>
+                                              <span dir="ltr" className="text-gray-900">{formatEnglishNumber(appliedDensity, 0, 1)}</span>
+                                              <span className="text-[10px] font-bold opacity-80 uppercase text-gray-900">kVA/100m²</span>
+                                            </>
+                                          )}
                                         </span>
                                       </td>
 
@@ -3557,7 +3815,7 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
               const buildingsLoadsList = buildingsList.map((bld, idx) => {
                 let connected = bld.floors.reduce((sum, fl) => {
                   const rowSubtotal = (Number(fl.floorsCount) || 0) * (Number(fl.areaPerFloor) || 0);
-                  const density = getFloorAppliedDensity(fl.name);
+                  const density = getFloorAppliedDensity(fl.name, bld.buildingType);
                   return sum + (rowSubtotal * density) / 100;
                 }, 0);
 
@@ -3567,7 +3825,7 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
 
                 const floorBreakdownDemand = bld.floors.reduce((sum, fl) => {
                   const rowSubtotal = (Number(fl.floorsCount) || 0) * (Number(fl.areaPerFloor) || 0);
-                  const density = getFloorAppliedDensity(fl.name);
+                  const density = getFloorAppliedDensity(fl.name, bld.buildingType);
                   const conn = (rowSubtotal * density) / 100;
                   const df = fl.demandFactor !== undefined ? Number(fl.demandFactor) || 0.8 : 0.8;
                   return sum + conn * df;
@@ -3639,6 +3897,13 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
               const grandTotalDemand = totalBuildingsDemand + totalPumpsDemand + totalExtraDemand;
               const numericDiversityFactor = projectDiversityFactor === '' ? 0 : Math.max(0, Number(projectDiversityFactor) || 0);
               const finalDiversifiedDemand = grandTotalDemand * numericDiversityFactor;
+              const numericSparePercent = spareCapacityPercent === '' ? 0 : Math.max(0, Number(spareCapacityPercent) || 0);
+              const finalLoadWithSpare = finalDiversifiedDemand * (1 + numericSparePercent / 100);
+              const numericLoadingRatio = transformerLoadingRatio === '' ? 0 : Math.max(0, Number(transformerLoadingRatio) || 0);
+              const requiredTransformerKva = numericLoadingRatio > 0 ? finalLoadWithSpare / (numericLoadingRatio / 100) : 0;
+              const numericQuantity = transformerQuantity === '' ? 1 : Math.max(1, parseInt(String(transformerQuantity), 10) || 1);
+              const totalInstalledTransformerKva = selectedTransformerSize * numericQuantity;
+              const actualLoadingRatio = totalInstalledTransformerKva > 0 ? (finalLoadWithSpare / totalInstalledTransformerKva) * 100 : 0;
 
               return (
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 shadow-2xs space-y-5">
@@ -3757,8 +4022,12 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                             {/* LOAD DENSITY / FORMULA */}
                             <td className="py-2.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-600 rtl:border-r-0 rtl:border-l font-mono text-xs text-slate-700 dark:text-gray-300">
                               <span className="inline-flex items-center gap-1 bg-yellow-100 dark:bg-yellow-300 text-gray-900 px-2.5 py-1 rounded-lg border border-yellow-300 font-bold">
-                                <span dir="ltr" className="text-gray-900">Avg: {formatEnglishNumber(item.avgDensity, 1, 1)}</span>
-                                <span className="text-2xs opacity-80 text-gray-900">kVA/100m²</span>
+                                <span dir="ltr" className="text-gray-900">
+                                  Avg: {selectedStandardId === 'saudi' ? formatEnglishNumber(item.avgDensity * 10, 1, 1) : formatEnglishNumber(item.avgDensity, 1, 1)}
+                                </span>
+                                <span className="text-2xs opacity-80 text-gray-900">
+                                  {selectedStandardId === 'saudi' ? 'VA/m²' : 'kVA/100m²'}
+                                </span>
                               </span>
                             </td>
 
@@ -4111,6 +4380,254 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({ onBackToOvervi
                           <td className="py-3.5 px-3.5 text-right rtl:text-left font-mono font-black text-base sm:text-xl text-[#1E3A8A] dark:text-blue-300 tracking-tight">
                             <span dir="ltr" className="inline-block bg-[#1E3A8A] dark:bg-blue-600 text-white border border-blue-900 dark:border-blue-700 px-3.5 py-1.5 rounded-xl shadow-xs font-black text-base sm:text-lg">
                               {formatEnglishNumber(finalDiversifiedDemand, 1, 1)} kVA
+                            </span>
+                          </td>
+                        </tr>
+
+                        {/* ROW 3: SPARE CAPACITY */}
+                        <tr className="bg-amber-50/80 dark:bg-amber-950/30 text-slate-900 dark:text-white font-black text-xs sm:text-sm border-t border-amber-200 dark:border-amber-800">
+                          {/* Column 1: ITEM NAME */}
+                          <td className="py-3.5 px-3.5 border-r border-amber-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l text-amber-950 dark:text-amber-200">
+                            <div className="flex items-start gap-2">
+                              <span className="text-base">📈</span>
+                              <div>
+                                <span className="font-black text-xs sm:text-sm block">
+                                  {isAr ? 'السعة الاحتياطية (SPARE CAPACITY)' : 'SPARE CAPACITY (احتياطي مستقبلي)'}
+                                </span>
+                                <span className="text-2xs text-slate-500 dark:text-gray-400 font-medium block">
+                                  {isAr ? 'مضافة للتوسعات والنمو المستقبلي' : 'Added for future load expansions'}
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+
+                          {/* Column 2: CATEGORY / TYPE */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-amber-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-slate-400 dark:text-gray-500">
+                            —
+                          </td>
+
+                          {/* Column 3: AREA / POWER */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-amber-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-slate-400 dark:text-gray-500">
+                            —
+                          </td>
+
+                          {/* Column 4: LOAD DENSITY / FORMULA */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-amber-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-2xs text-amber-900/80 dark:text-amber-300/80 font-semibold">
+                            Total Demand × (1 + Spare %)
+                          </td>
+
+                          {/* Column 5: TOTAL CONNECTED (kVA) */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-amber-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-slate-400 dark:text-gray-500">
+                            —
+                          </td>
+
+                          {/* Column 6: DEMAND FACTOR (Editable Spare Capacity %) */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-amber-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l">
+                            <div className="flex items-center justify-center gap-1" dir="ltr">
+                              <input
+                                type="text"
+                                inputMode="decimal"
+                                dir="ltr"
+                                lang="en"
+                                style={{ direction: 'ltr', textAlign: 'center' }}
+                                value={toEnglishDigits(spareCapacityPercent)}
+                                onChange={(e) => setSpareCapacityPercent(toEnglishDigits(e.target.value).replace(/[^0-9.]/g, ''))}
+                                onKeyDown={handleArabicDigitsKeyDown}
+                                onPaste={handleNumericPaste}
+                                className="w-18 bg-white dark:bg-gray-900 text-slate-900 dark:text-white border-2 border-amber-400 dark:border-amber-600 focus:border-amber-700 font-mono font-black text-xs sm:text-sm text-center rounded-lg px-2 py-1.5 focus:ring-2 focus:ring-amber-300 focus:outline-hidden shadow-2xs"
+                                title="Spare Capacity % (نسبة السعة الاحتياطية)"
+                                placeholder="20"
+                              />
+                              <span className="font-mono font-extrabold text-xs sm:text-sm text-amber-900 dark:text-amber-300 select-none">%</span>
+                            </div>
+                          </td>
+
+                          {/* Column 7: TOTAL DEMAND LOAD (kVA) */}
+                          <td className="py-3.5 px-3.5 text-right rtl:text-left font-mono font-black text-base sm:text-xl text-amber-950 dark:text-amber-200 tracking-tight">
+                            <span dir="ltr" className="inline-block bg-amber-500 dark:bg-amber-600 text-slate-950 dark:text-white border border-amber-600 dark:border-amber-500 px-3.5 py-1.5 rounded-xl shadow-xs font-black text-base sm:text-lg">
+                              {formatEnglishNumber(finalLoadWithSpare, 1, 1)} kVA
+                            </span>
+                          </td>
+                        </tr>
+
+                        {/* ROW 4: TRANSFORMER LOADING RATIO */}
+                        <tr className="bg-slate-50/90 dark:bg-gray-800/80 text-slate-900 dark:text-white font-black text-xs sm:text-sm border-t border-slate-200 dark:border-gray-700">
+                          {/* Column 1: ITEM NAME */}
+                          <td className="py-3.5 px-3.5 border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l text-slate-900 dark:text-white">
+                            <div className="flex items-start gap-2">
+                              <span className="text-base">⚙️</span>
+                              <div>
+                                <span className="font-black text-xs sm:text-sm block">
+                                  {isAr ? 'نسبة تحميل المحول (TRANSFORMER LOADING RATIO)' : 'TRANSFORMER LOADING RATIO (نسبة تحميل المحول)'}
+                                </span>
+                                <span className="text-2xs text-slate-500 dark:text-gray-400 font-medium block">
+                                  {isAr ? 'الحد الأقصى الموصى به: 80%' : 'Max recommended: 80%'}
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+
+                          {/* Column 2: CATEGORY / TYPE */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-slate-400 dark:text-gray-500">
+                            —
+                          </td>
+
+                          {/* Column 3: AREA / POWER */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-slate-400 dark:text-gray-500">
+                            —
+                          </td>
+
+                          {/* Column 4: LOAD DENSITY / FORMULA */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-2xs text-slate-600 dark:text-slate-300 font-semibold">
+                            Total Load with Spare / (Loading Ratio / 100)
+                          </td>
+
+                          {/* Column 5: TOTAL CONNECTED (kVA) */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-slate-400 dark:text-gray-500">
+                            —
+                          </td>
+
+                          {/* Column 6: DEMAND FACTOR (Editable Loading Ratio %) */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l">
+                            <div className="flex flex-col items-center justify-center gap-1">
+                              <div className="flex items-center justify-center gap-1" dir="ltr">
+                                <input
+                                  type="text"
+                                  inputMode="decimal"
+                                  dir="ltr"
+                                  lang="en"
+                                  style={{ direction: 'ltr', textAlign: 'center' }}
+                                  value={toEnglishDigits(transformerLoadingRatio)}
+                                  onChange={(e) => setTransformerLoadingRatio(toEnglishDigits(e.target.value).replace(/[^0-9.]/g, ''))}
+                                  onBlur={() => {
+                                    if (transformerLoadingRatio === '' || Number(transformerLoadingRatio) <= 0) {
+                                      setTransformerLoadingRatio(80);
+                                    }
+                                  }}
+                                  onKeyDown={handleArabicDigitsKeyDown}
+                                  onPaste={handleNumericPaste}
+                                  className="w-18 bg-white dark:bg-gray-900 text-slate-900 dark:text-white border-2 border-slate-300 dark:border-gray-600 focus:border-[#1E3A8A] font-mono font-black text-xs sm:text-sm text-center rounded-lg px-2 py-1.5 focus:ring-2 focus:ring-blue-300 focus:outline-hidden shadow-2xs"
+                                  title="Transformer Loading Ratio % (نسبة تحميل المحول)"
+                                  placeholder="80"
+                                />
+                                <span className="font-mono font-extrabold text-xs sm:text-sm text-slate-700 dark:text-slate-300 select-none">%</span>
+                              </div>
+                              {Number(transformerLoadingRatio) > 80 && (
+                                <span className="text-[10px] leading-tight text-red-600 dark:text-red-400 font-bold text-center max-w-[210px]">
+                                  {isAr
+                                    ? '⚠️ Warning: Exceeding 80% exceeds standard code limits and requires consultant approval.'
+                                    : '⚠️ Warning: Exceeding 80% exceeds standard code limits and requires consultant approval.'}
+                                </span>
+                              )}
+                            </div>
+                          </td>
+
+                          {/* Column 7: TOTAL DEMAND LOAD (Required Transformer kVA) */}
+                          <td className="py-3.5 px-3.5 text-right rtl:text-left font-mono font-black text-base sm:text-xl text-slate-900 dark:text-white tracking-tight">
+                            <span dir="ltr" className="inline-block bg-slate-900 dark:bg-slate-700 text-white border border-slate-950 dark:border-slate-600 px-3.5 py-1.5 rounded-xl shadow-xs font-black text-base sm:text-lg">
+                              {formatEnglishNumber(requiredTransformerKva, 1, 1)} kVA
+                            </span>
+                          </td>
+                        </tr>
+
+                        {/* ROW 5: SELECTED TRANSFORMER & QUANTITY */}
+                        <tr className="bg-slate-100/70 dark:bg-gray-800/90 text-slate-900 dark:text-white font-black text-xs sm:text-sm border-t border-slate-200 dark:border-gray-700">
+                          {/* Column 1: ITEM NAME */}
+                          <td className="py-3.5 px-3.5 border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l text-slate-900 dark:text-white">
+                            <div className="flex items-start gap-2">
+                              <span className="text-base">🔌</span>
+                              <div>
+                                <span className="font-black text-xs sm:text-sm block">
+                                  {isAr ? 'المحول المختار (SELECTED TRANSFORMER)' : 'SELECTED TRANSFORMER (المحول المختار)'}
+                                </span>
+                                <span className="text-2xs text-slate-500 dark:text-gray-400 font-medium block">
+                                  {isAr ? 'Standard Schneider Sizes' : 'Standard Schneider Sizes'}
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+
+                          {/* Column 2: CATEGORY / TYPE */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-slate-400 dark:text-gray-500">
+                            —
+                          </td>
+
+                          {/* Column 3: AREA / POWER */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-xs text-slate-700 dark:text-gray-300 font-bold">
+                            <span dir="ltr">{formatEnglishInt(totalInstalledTransformerKva)} kVA</span>
+                          </td>
+
+                          {/* Column 4: LOAD DENSITY / FORMULA */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-2xs text-slate-600 dark:text-slate-300 font-semibold">
+                            Total Load with Spare / (Size × Qty)
+                          </td>
+
+                          {/* Column 5: TOTAL CONNECTED (kVA) */}
+                          <td className="py-3.5 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l font-mono text-slate-400 dark:text-gray-500">
+                            —
+                          </td>
+
+                          {/* Column 6: DEMAND FACTOR (Selected Transformer Size Dropdown + Quantity Input with Labels) */}
+                          <td className="py-3 px-3.5 text-center border-r border-slate-200 dark:border-gray-700 rtl:border-r-0 rtl:border-l">
+                            <div className="flex items-center justify-center gap-3" dir="ltr">
+                              {/* Transformer Size Group */}
+                              <div className="flex flex-col items-start gap-1">
+                                <label className="text-2xs sm:text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider text-left">
+                                  TRANSFORMER SIZE (قدرة المحول)
+                                </label>
+                                <select
+                                  value={selectedTransformerSize}
+                                  onChange={(e) => setSelectedTransformerSize(Number(e.target.value))}
+                                  className="w-full bg-white dark:bg-gray-900 text-slate-900 dark:text-white border-2 border-slate-300 dark:border-gray-600 focus:border-[#1E3A8A] font-mono font-bold text-xs rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-blue-300 focus:outline-hidden shadow-2xs cursor-pointer"
+                                  title="Selected Transformer Size (kVA)"
+                                >
+                                  {STANDARD_SCHNEIDER_TRANSFORMER_SIZES.map((size) => (
+                                    <option key={size} value={size}>
+                                      {size} kVA
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+
+                              {/* Quantity Group */}
+                              <div className="flex flex-col items-start gap-1">
+                                <label className="text-2xs sm:text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider text-left">
+                                  QTY (العدد)
+                                </label>
+                                <input
+                                  type="text"
+                                  inputMode="numeric"
+                                  dir="ltr"
+                                  lang="en"
+                                  style={{ direction: 'ltr', textAlign: 'center' }}
+                                  value={toEnglishDigits(transformerQuantity)}
+                                  onChange={(e) => setTransformerQuantity(toEnglishDigits(e.target.value).replace(/[^0-9]/g, ''))}
+                                  onBlur={() => {
+                                    if (transformerQuantity === '' || Number(transformerQuantity) < 1) {
+                                      setTransformerQuantity(1);
+                                    }
+                                  }}
+                                  onKeyDown={handleArabicDigitsKeyDown}
+                                  onPaste={handleNumericPaste}
+                                  className="w-16 bg-white dark:bg-gray-900 text-slate-900 dark:text-white border-2 border-slate-300 dark:border-gray-600 focus:border-[#1E3A8A] font-mono font-black text-xs sm:text-sm text-center rounded-lg px-2 py-1.5 focus:ring-2 focus:ring-blue-300 focus:outline-hidden shadow-2xs"
+                                  title="Transformer Quantity (العدد)"
+                                  placeholder="1"
+                                />
+                              </div>
+                            </div>
+                          </td>
+
+                          {/* Column 7: TOTAL DEMAND LOAD (ACTUAL LOADING RATIO %) */}
+                          <td className="py-3.5 px-3.5 text-right rtl:text-left font-mono font-black text-base sm:text-xl tracking-tight">
+                            <span
+                              dir="ltr"
+                              className={`inline-block px-3.5 py-1.5 rounded-xl shadow-xs font-black text-base sm:text-lg border ${
+                                actualLoadingRatio < 80
+                                  ? 'bg-emerald-600 text-white border-emerald-700'
+                                  : 'bg-red-600 text-white border-red-700'
+                              }`}
+                            >
+                              {formatEnglishNumber(actualLoadingRatio, 1, 1)}%
                             </span>
                           </td>
                         </tr>
