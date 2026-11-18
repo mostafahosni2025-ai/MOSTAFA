@@ -9,7 +9,23 @@ import { Footer } from './components/Footer';
 import { MethodologyCard } from './components/MethodologyCard';
 import { MasterDetailStandardsModal } from './components/MasterDetailStandardsModal';
 import { AmericanModal } from './components/AmericanModal';
-import { CalculationStep } from './components/CalculationStep';
+import {
+  CalculationStep,
+  StandardId,
+  OccupancyCategory,
+  SaudiCategoryItem,
+  SAUDI_SEC_CATEGORIES,
+  IecOccupancyCategory,
+  IecDemandType,
+  IEC_OCCUPANCY_CATEGORIES,
+  NEC_OCCUPANCY_CATEGORIES,
+  BuildingItem,
+  PumpItem,
+  ExtraLoadItem,
+  IecExtraLoadItem,
+  createDefaultNecLoads,
+} from './components/CalculationStep';
+import { SaudiVoltageOption } from './data/c1c2TablesData';
 import { STANDARDS_DATA, StandardMethodology } from './data/standardsData';
 import { ChevronsUpDown } from 'lucide-react';
 import { Language, TRANSLATIONS } from './data/translations';
@@ -23,6 +39,146 @@ export default function App() {
     }
     return false;
   });
+
+  // Lifted Step 2 Project & Calculation State (persists across Step 1 <-> Step 2 navigation)
+  const [projectName, setProjectName] = useState<string>('Capital Commercial Complex Phase 1');
+  const [selectedStandardId, setSelectedStandardId] = useState<StandardId>('egypt');
+  const [egyptSubStandard, setEgyptSubStandard] = useState<'ecp203' | 'acud'>('ecp203');
+  const [egyptLocationType, setEgyptLocationType] = useState<'cities' | 'villages'>('cities');
+  const [egyptBuildingCategory, setEgyptBuildingCategory] = useState<'residential' | 'commercial_admin'>('residential');
+  const [egyptCityDistrictType, setEgyptCityDistrictType] = useState<'low_middle' | 'upscale'>('low_middle');
+  const [acudActivityId, setAcudActivityId] = useState<string>('commercial');
+  const [acudEvChargers, setAcudEvChargers] = useState<number>(2);
+
+  const [sharedCategory, setSharedCategory] = useState<OccupancyCategory>('Offices'); // For Egyptian & Saudi
+  const [iecCategory, setIecCategory] = useState<string>(IEC_OCCUPANCY_CATEGORIES[2].value); // For IEC only ('Office')
+  const [necCategory, setNecCategory] = useState<string>(NEC_OCCUPANCY_CATEGORIES[12].value); // For NEC only ('Office buildings')
+  const [areaSquareMeters, setAreaSquareMeters] = useState<number>(3500);
+
+  const [saudiSelectedCategory, setSaudiSelectedCategory] = useState<SaudiCategoryItem>(SAUDI_SEC_CATEGORIES[6]);
+  const [saudiLoadDensityVA, setSaudiLoadDensityVA] = useState<number>(176);
+  const [saudiDemandFactor, setSaudiDemandFactor] = useState<number>(0.6);
+
+  const [iecSelectedCategory, setIecSelectedCategory] = useState<IecOccupancyCategory>(
+    IEC_OCCUPANCY_CATEGORIES[2]
+  );
+  const [iecDemandType, setIecDemandType] = useState<IecDemandType>('avg');
+  const [iecPowerFactor, setIecPowerFactor] = useState<number | string>(0.85);
+
+  const [saudiC1C2Voltage, setSaudiC1C2Voltage] = useState<SaudiVoltageOption>('400V');
+  const [saudiC1C2Area, setSaudiC1C2Area] = useState<number | string>(350);
+  const [hasAdditionalLoads, setHasAdditionalLoads] = useState<boolean>(false);
+  const [needsTransformer, setNeedsTransformer] = useState<boolean>(false);
+
+  const [buildingsList, setBuildingsList] = useState<BuildingItem[]>([
+    {
+      id: 'bld-1',
+      name: 'Building 1',
+      buildingType: 'Offices',
+      iecBuildingType: IEC_OCCUPANCY_CATEGORIES[2].value,
+      necBuildingType: NEC_OCCUPANCY_CATEGORIES[12].value,
+      isTypeCustomized: false,
+      saudiLoadEstimationType: 'standard',
+      floorsCount: 7,
+      floors: [
+        {
+          id: 'f-1',
+          name: 'Ground Floor',
+          floorsCount: 1,
+          areaPerFloor: 500,
+          demandFactor: 0.8,
+          appliedLoadDensity: 4,
+          necPowerDensity: 20,
+          necPowerDf: 0.5,
+          necHvacDensity: 50,
+          necHvacDf: 1.0,
+          necAdditionalKva: 0,
+          necAdditionalDf: 1.0,
+          loads: createDefaultNecLoads(NEC_OCCUPANCY_CATEGORIES[12].vaPerM2),
+        },
+        {
+          id: 'f-2',
+          name: 'Typical Floor',
+          floorsCount: 5,
+          areaPerFloor: 500,
+          demandFactor: 0.8,
+          appliedLoadDensity: 4,
+          necPowerDensity: 20,
+          necPowerDf: 0.5,
+          necHvacDensity: 50,
+          necHvacDf: 1.0,
+          necAdditionalKva: 0,
+          necAdditionalDf: 1.0,
+          loads: createDefaultNecLoads(NEC_OCCUPANCY_CATEGORIES[12].vaPerM2),
+        },
+        {
+          id: 'f-3',
+          name: 'Basement Parking',
+          floorsCount: 1,
+          areaPerFloor: 500,
+          demandFactor: 0.8,
+          appliedLoadDensity: 3,
+          necPowerDensity: 20,
+          necPowerDf: 0.5,
+          necHvacDensity: 50,
+          necHvacDf: 1.0,
+          necAdditionalKva: 0,
+          necAdditionalDf: 1.0,
+          loads: createDefaultNecLoads(3),
+        },
+      ],
+      totalArea: 3500,
+    },
+  ]);
+
+  const [numberOfAreas, setNumberOfAreas] = useState<number | string>(1);
+  const [buildingAreas, setBuildingAreas] = useState<(number | string)[]>([3500]);
+
+  const [pumps, setPumps] = useState<PumpItem[]>([
+    {
+      id: 1,
+      name: 'PUMP-1',
+      power: 10,
+      unit: 'HP',
+      efficiency: 95,
+      pf: 0.85,
+      category: 'water',
+      demandFactor: 0.8,
+    },
+  ]);
+
+  const [extraLoads, setExtraLoads] = useState<ExtraLoadItem[]>([
+    {
+      id: 1,
+      name: 'ELEVATOR-1',
+      power: 25,
+      unit: 'kVA',
+      category: 'transport',
+      qty: 1,
+      demandFactor: 0.8,
+    },
+  ]);
+
+  const [iecExtraLoads, setIecExtraLoads] = useState<IecExtraLoadItem[]>([]);
+
+  const [projectDiversityFactor, setProjectDiversityFactor] = useState<number | string>(0.8);
+  const [necDiversityFactor, setNecDiversityFactor] = useState<number | string>(1.0);
+  const [numberOfMeters, setNumberOfMeters] = useState<number | string>(1);
+  const [coincidentFactor, setCoincidentFactor] = useState<number>(1);
+  const [spareCapacityPercent, setSpareCapacityPercent] = useState<number | string>(20);
+  const [transformerLoadingRatio, setTransformerLoadingRatio] = useState<number | string>(80);
+  const [egyptTransformerSize, setEgyptTransformerSize] = useState<number>(1000);
+  const [egyptTransformerQty, setEgyptTransformerQty] = useState<number | string>(1);
+  const [saudiTransformerSize, setSaudiTransformerSize] = useState<number>(500);
+  const [saudiTransformerQty, setSaudiTransformerQty] = useState<number | string>(1);
+  const [iecTransformerSize, setIecTransformerSize] = useState<number>(1000);
+  const [iecTransformerQty, setIecTransformerQty] = useState<number | string>(1);
+  const [necTransformerSize, setNecTransformerSize] = useState<number>(1000);
+  const [necTransformerQty, setNecTransformerQty] = useState<number | string>(1);
+
+  const [buildingsDemandFactorOverrides, setBuildingsDemandFactorOverrides] = useState<Record<string, number | string>>({});
+  const [pumpsDemandFactorOverrides, setPumpsDemandFactorOverrides] = useState<Record<string | number, number | string>>({});
+  const [extraLoadsDemandFactorOverrides, setExtraLoadsDemandFactorOverrides] = useState<Record<string | number, number | string>>({});
 
   useEffect(() => {
     if (isDarkMode) {
@@ -155,6 +311,96 @@ export default function App() {
           onBackToOverview={() => setCurrentStep('overview')}
           lang={lang}
           isDarkMode={isDarkMode}
+          projectName={projectName}
+          setProjectName={setProjectName}
+          selectedStandardId={selectedStandardId}
+          setSelectedStandardId={setSelectedStandardId}
+          egyptSubStandard={egyptSubStandard}
+          setEgyptSubStandard={setEgyptSubStandard}
+          egyptLocationType={egyptLocationType}
+          setEgyptLocationType={setEgyptLocationType}
+          egyptBuildingCategory={egyptBuildingCategory}
+          setEgyptBuildingCategory={setEgyptBuildingCategory}
+          egyptCityDistrictType={egyptCityDistrictType}
+          setEgyptCityDistrictType={setEgyptCityDistrictType}
+          acudActivityId={acudActivityId}
+          setAcudActivityId={setAcudActivityId}
+          acudEvChargers={acudEvChargers}
+          setAcudEvChargers={setAcudEvChargers}
+          sharedCategory={sharedCategory}
+          setSharedCategory={setSharedCategory}
+          iecCategory={iecCategory}
+          setIecCategory={setIecCategory}
+          necCategory={necCategory}
+          setNecCategory={setNecCategory}
+          areaSquareMeters={areaSquareMeters}
+          setAreaSquareMeters={setAreaSquareMeters}
+          saudiSelectedCategory={saudiSelectedCategory}
+          setSaudiSelectedCategory={setSaudiSelectedCategory}
+          saudiLoadDensityVA={saudiLoadDensityVA}
+          setSaudiLoadDensityVA={setSaudiLoadDensityVA}
+          saudiDemandFactor={saudiDemandFactor}
+          setSaudiDemandFactor={setSaudiDemandFactor}
+          iecSelectedCategory={iecSelectedCategory}
+          setIecSelectedCategory={setIecSelectedCategory}
+          iecDemandType={iecDemandType}
+          setIecDemandType={setIecDemandType}
+          iecPowerFactor={iecPowerFactor}
+          setIecPowerFactor={setIecPowerFactor}
+          saudiC1C2Voltage={saudiC1C2Voltage}
+          setSaudiC1C2Voltage={setSaudiC1C2Voltage}
+          saudiC1C2Area={saudiC1C2Area}
+          setSaudiC1C2Area={setSaudiC1C2Area}
+          hasAdditionalLoads={hasAdditionalLoads}
+          setHasAdditionalLoads={setHasAdditionalLoads}
+          needsTransformer={needsTransformer}
+          setNeedsTransformer={setNeedsTransformer}
+          buildingsList={buildingsList}
+          setBuildingsList={setBuildingsList}
+          numberOfAreas={numberOfAreas}
+          setNumberOfAreas={setNumberOfAreas}
+          buildingAreas={buildingAreas}
+          setBuildingAreas={setBuildingAreas}
+          pumps={pumps}
+          setPumps={setPumps}
+          extraLoads={extraLoads}
+          setExtraLoads={setExtraLoads}
+          iecExtraLoads={iecExtraLoads}
+          setIecExtraLoads={setIecExtraLoads}
+          projectDiversityFactor={projectDiversityFactor}
+          setProjectDiversityFactor={setProjectDiversityFactor}
+          necDiversityFactor={necDiversityFactor}
+          setNecDiversityFactor={setNecDiversityFactor}
+          numberOfMeters={numberOfMeters}
+          setNumberOfMeters={setNumberOfMeters}
+          coincidentFactor={coincidentFactor}
+          setCoincidentFactor={setCoincidentFactor}
+          spareCapacityPercent={spareCapacityPercent}
+          setSpareCapacityPercent={setSpareCapacityPercent}
+          transformerLoadingRatio={transformerLoadingRatio}
+          setTransformerLoadingRatio={setTransformerLoadingRatio}
+          egyptTransformerSize={egyptTransformerSize}
+          setEgyptTransformerSize={setEgyptTransformerSize}
+          egyptTransformerQty={egyptTransformerQty}
+          setEgyptTransformerQty={setEgyptTransformerQty}
+          saudiTransformerSize={saudiTransformerSize}
+          setSaudiTransformerSize={setSaudiTransformerSize}
+          saudiTransformerQty={saudiTransformerQty}
+          setSaudiTransformerQty={setSaudiTransformerQty}
+          iecTransformerSize={iecTransformerSize}
+          setIecTransformerSize={setIecTransformerSize}
+          iecTransformerQty={iecTransformerQty}
+          setIecTransformerQty={setIecTransformerQty}
+          necTransformerSize={necTransformerSize}
+          setNecTransformerSize={setNecTransformerSize}
+          necTransformerQty={necTransformerQty}
+          setNecTransformerQty={setNecTransformerQty}
+          buildingsDemandFactorOverrides={buildingsDemandFactorOverrides}
+          setBuildingsDemandFactorOverrides={setBuildingsDemandFactorOverrides}
+          pumpsDemandFactorOverrides={pumpsDemandFactorOverrides}
+          setPumpsDemandFactorOverrides={setPumpsDemandFactorOverrides}
+          extraLoadsDemandFactorOverrides={extraLoadsDemandFactorOverrides}
+          setExtraLoadsDemandFactorOverrides={setExtraLoadsDemandFactorOverrides}
         />
       )}
 

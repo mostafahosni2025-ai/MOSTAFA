@@ -1158,41 +1158,33 @@ export const MasterDetailStandardsModal: React.FC<MasterDetailStandardsModalProp
 
                 {activeItem === 'item3' && (
                   <div className="flex-1 min-h-0 overflow-y-auto table-scrollbar max-h-[calc(100vh-350px)] p-4 sm:p-5 space-y-6 pb-14">
-                    {/* Part A: Equipment */}
+                    {/* Sub-table A: Equipment SFs [Equipment, SF] */}
                     <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
                       <div className="sticky top-0 z-20 bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center justify-between">
                         <h4 className="font-extrabold text-slate-900 text-sm">
-                          {isAr ? 'الجزء أ: معاملات تزامن المعدات (Escalator, Elevator, Sanitary, Heating, A/C)' : 'Part A: Equipment Simultaneity Factors (Escalator, Elevator, Sanitary, Heating, A/C)'}
+                          {isAr ? 'الجدول أ: معاملات تزامن المعدات (Equipment SFs)' : 'Sub-table A: Equipment Simultaneity Factors (Equipment SFs)'}
                         </h4>
                         <span className="text-xs font-mono font-bold bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-700">
-                          Part A: Equipment
+                          Equipment SFs
                         </span>
                       </div>
                       <div className="overflow-x-auto relative table-scrollbar">
-                        <table className="w-full text-left rtl:text-right text-xs border-separate border-spacing-0">
+                        <table className="w-full text-left rtl:text-right text-xs sm:text-sm border-separate border-spacing-0">
                           <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                             <tr className="text-slate-800 font-bold bg-slate-100">
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                                Equipment
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-4 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
+                                {isAr ? 'المعدة (Equipment)' : 'Equipment'}
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-[#1E3A8A]">
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-4 text-center border-b-2 border-slate-300 font-bold text-[#1E3A8A]">
                                 SF
-                              </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                                Rating
-                              </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-slate-300 font-bold text-slate-800">
-                                Notes
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-100 font-medium">
                             {IEC_INSTALLATIONS_PART_A.map((row, idx) => (
                               <tr key={row.equipment} className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}>
-                                <td className="py-2 px-3 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.equipmentAr : row.equipment}</td>
-                                <td className="py-2 px-3 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.sf}</td>
-                                <td className="py-2 px-3 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.typicalRatingAr : row.typicalRating}</td>
-                                <td className="py-2 px-3 text-slate-600 border-b border-slate-100">{isAr ? row.notesAr : row.notes}</td>
+                                <td className="py-2.5 px-4 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.equipmentAr : row.equipment}</td>
+                                <td className="py-2.5 px-4 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100">{row.sf}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -1200,49 +1192,45 @@ export const MasterDetailStandardsModal: React.FC<MasterDetailStandardsModalProp
                       </div>
                     </div>
 
-                    {/* Part B: Space Heating, Cooling & PV */}
+                    {/* Sub-table B: Heating/Cooling Densities [Item, Unit, Min, Max, Average] */}
                     <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
                       <div className="sticky top-0 z-20 bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center justify-between">
                         <h4 className="font-extrabold text-slate-900 text-sm">
-                          {isAr ? 'الجزء ب: أنظمة التدفئة والتبريد والطاقة (Floor heating, Night storage, PV)' : 'Part B: Heating, Cooling & Renewables (Floor heating, Night storage, PV)'}
+                          {isAr ? 'الجدول ب: كثافات التدفئة والتبريد والطاقة الشمسية' : 'Sub-table B: Heating / Cooling Densities'}
                         </h4>
                         <span className="text-xs font-mono font-bold bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-700">
-                          Part B: HVAC & PV
+                          Heating / Cooling
                         </span>
                       </div>
                       <div className="overflow-x-auto relative table-scrollbar">
-                        <table className="w-full text-left rtl:text-right text-xs border-separate border-spacing-0">
+                        <table className="w-full text-left rtl:text-right text-xs sm:text-sm border-separate border-spacing-0">
                           <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                             <tr className="text-slate-800 font-bold bg-slate-100">
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                                Item
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-4 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
+                                {isAr ? 'البند (Item)' : 'Item'}
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
                                 Unit
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
                                 Min
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
                                 Max
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-[#1E3A8A]">
-                                Avg
-                              </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-slate-300 font-bold text-slate-800">
-                                Notes
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-slate-300 font-bold text-[#1E3A8A]">
+                                Average
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-100 font-medium">
                             {IEC_INSTALLATIONS_PART_B.map((row, idx) => (
                               <tr key={row.item} className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}>
-                                <td className="py-2 px-3 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.itemAr : row.item}</td>
-                                <td className="py-2 px-2.5 text-center font-mono font-bold text-slate-500 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.unit}</td>
-                                <td className="py-2 px-2.5 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.min}</td>
-                                <td className="py-2 px-2.5 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.max}</td>
-                                <td className="py-2 px-2.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.average}</td>
-                                <td className="py-2 px-3 text-slate-600 border-b border-slate-100">{isAr ? row.notesAr : row.notes}</td>
+                                <td className="py-2.5 px-4 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.itemAr : row.item}</td>
+                                <td className="py-2.5 px-3 text-center font-mono font-bold text-slate-500 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.unit}</td>
+                                <td className="py-2.5 px-3 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.min}</td>
+                                <td className="py-2.5 px-3 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.max}</td>
+                                <td className="py-2.5 px-3 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100">{row.average}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -1254,41 +1242,37 @@ export const MasterDetailStandardsModal: React.FC<MasterDetailStandardsModalProp
 
                 {activeItem === 'item4' && (
                   <div className="flex-1 min-h-0 overflow-y-auto table-scrollbar max-h-[calc(100vh-350px)] p-4 sm:p-5 space-y-6 pb-14">
-                    {/* Part A: Lighting (Roads, Heavy-duty, Office work, Fine work) */}
+                    {/* Sub-table A: Fluorescent Lighting [Application, VA/m², Lux] */}
                     <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
                       <div className="sticky top-0 z-20 bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center justify-between">
                         <h4 className="font-extrabold text-slate-900 text-sm">
-                          {isAr ? 'الجزء أ: كثافة أحمال الإنارة ومستويات LUX (Roads, Heavy-duty, Office work, Fine work)' : 'Part A: Lighting Load Density & Lux (Roads, Heavy-duty, Office work, Fine work)'}
+                          {isAr ? 'الجدول أ: الإنارة الفلورسنت (Fluorescent Lighting)' : 'Sub-table A: Fluorescent Lighting'}
                         </h4>
                         <span className="text-xs font-mono font-bold bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-700">
-                          Part A: Lighting
+                          Lighting
                         </span>
                       </div>
                       <div className="overflow-x-auto relative table-scrollbar">
-                        <table className="w-full text-left rtl:text-right text-xs border-separate border-spacing-0">
+                        <table className="w-full text-left rtl:text-right text-xs sm:text-sm border-separate border-spacing-0">
                           <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                             <tr className="text-slate-800 font-bold bg-slate-100">
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                                Application
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-4 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
+                                {isAr ? 'التطبيق (Application)' : 'Application'}
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-[#1E3A8A]">
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-4 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-[#1E3A8A]">
                                 VA/m²
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-amber-700">
-                                Lux (E_m)
-                              </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-slate-300 font-bold text-slate-800">
-                                Standard Target
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-4 text-center border-b-2 border-slate-300 font-bold text-amber-700">
+                                Lux
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-100 font-medium">
                             {IEC_LIGHTING_PART_A.map((row, idx) => (
                               <tr key={row.application} className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}>
-                                <td className="py-2 px-3 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.applicationAr : row.application}</td>
-                                <td className="py-2 px-2.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.vaPerM2}</td>
-                                <td className="py-2 px-2.5 text-center font-mono font-bold text-amber-700 bg-amber-50/30 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.lux}</td>
-                                <td className="py-2 px-3 text-slate-600 border-b border-slate-100">{isAr ? row.standardTargetAr : row.standardTarget}</td>
+                                <td className="py-2.5 px-4 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.applicationAr : row.application}</td>
+                                <td className="py-2.5 px-4 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.vaPerM2}</td>
+                                <td className="py-2.5 px-4 text-center font-mono font-bold text-amber-700 bg-amber-50/30 border-b border-slate-100">{row.lux}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -1296,49 +1280,41 @@ export const MasterDetailStandardsModal: React.FC<MasterDetailStandardsModalProp
                       </div>
                     </div>
 
-                    {/* Part B: Small Power (Ventilation, Heaters, Offices, Workshops) */}
+                    {/* Sub-table B: Power Circuits [Application, Min VA/m², Max VA/m², Avg VA/m²] */}
                     <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
                       <div className="sticky top-0 z-20 bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center justify-between">
                         <h4 className="font-extrabold text-slate-900 text-sm">
-                          {isAr ? 'الجزء ب: مخصصات المقابس وقوى الأجهزة (Ventilation, Heaters, Offices, Workshops)' : 'Part B: Small Power (Ventilation, Heaters, Offices, Workshops)'}
+                          {isAr ? 'الجدول ب: دوائر القوى (Power Circuits)' : 'Sub-table B: Power Circuits'}
                         </h4>
                         <span className="text-xs font-mono font-bold bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-700">
-                          Part B: Small Power
+                          Power Circuits
                         </span>
                       </div>
                       <div className="overflow-x-auto relative table-scrollbar">
-                        <table className="w-full text-left rtl:text-right text-xs border-separate border-spacing-0">
+                        <table className="w-full text-left rtl:text-right text-xs sm:text-sm border-separate border-spacing-0">
                           <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                             <tr className="text-slate-800 font-bold bg-slate-100">
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                                Application
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-4 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
+                                {isAr ? 'التطبيق (Application)' : 'Application'}
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                                Details
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
+                                Min VA/m²
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                                Unit
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
+                                Max VA/m²
                               </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                                Min
-                              </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                                Max
-                              </th>
-                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2 text-center border-b-2 border-slate-300 font-bold text-[#1E3A8A]">
-                                Avg
+                              <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-slate-300 font-bold text-[#1E3A8A]">
+                                Avg VA/m²
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-100 font-medium">
                             {IEC_POWER_PART_B.map((row, idx) => (
                               <tr key={row.application} className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}>
-                                <td className="py-2 px-3 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.applicationAr : row.application}</td>
-                                <td className="py-2 px-3 text-slate-600 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.detailsAr : row.details}</td>
-                                <td className="py-2 px-2 text-center font-mono font-bold text-slate-500 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.unit}</td>
-                                <td className="py-2 px-2 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.min}</td>
-                                <td className="py-2 px-2 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.max}</td>
-                                <td className="py-2 px-2 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100">{row.average}</td>
+                                <td className="py-2.5 px-4 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.applicationAr : row.application}</td>
+                                <td className="py-2.5 px-3 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.minVaPerM2}</td>
+                                <td className="py-2.5 px-3 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.maxVaPerM2}</td>
+                                <td className="py-2.5 px-3 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100">{row.avgVaPerM2}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -1351,26 +1327,28 @@ export const MasterDetailStandardsModal: React.FC<MasterDetailStandardsModalProp
                 {activeItem === 'item5' && (
                   <div className="flex-1 min-h-0 overflow-y-auto table-scrollbar max-h-[calc(100vh-350px)] p-4 sm:p-5 space-y-6 pb-14">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                      {/* Fig B10 */}
+                      {/* Fig B10 - Apartments [Consumers, Ks] */}
                       <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
                         <div className="sticky top-0 z-20 bg-slate-100 px-3 py-2 border-b border-slate-200">
-                          <h4 className="font-bold text-slate-900 text-xs">Fig. B10: Number of consumers</h4>
+                          <h4 className="font-bold text-slate-900 text-xs">
+                            {isAr ? 'شكل B10 - الشقق السكنية' : 'Fig B10 - Apartments'}
+                          </h4>
                         </div>
                         <div className="overflow-x-auto relative table-scrollbar">
                           <table className="w-full text-xs border-separate border-spacing-0">
                             <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                               <tr className="bg-slate-100 font-bold">
-                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-2.5 border-b-2 border-r border-slate-300 text-left">From</th>
-                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-2.5 border-b-2 border-r border-slate-300 text-left">To</th>
-                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-2.5 border-b-2 border-slate-300 text-center font-extrabold text-[#1E3A8A]">Ks</th>
+                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l text-left rtl:text-right">
+                                  {isAr ? 'المستهلكون (Consumers)' : 'Consumers'}
+                                </th>
+                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-3 border-b-2 border-slate-300 text-center font-extrabold text-[#1E3A8A]">Ks</th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100 font-mono text-xs">
                               {IEC_KS_FIG_B10.map((row, idx) => (
-                                <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFC]'}>
-                                  <td className="py-1.5 px-2.5 border-b border-r border-slate-100">{row.from}</td>
-                                  <td className="py-1.5 px-2.5 border-b border-r border-slate-100">{row.to}</td>
-                                  <td className="py-1.5 px-2.5 text-center font-bold text-[#1E3A8A] border-b" dir="ltr">{row.ks.toFixed(2)}</td>
+                                <tr key={idx} className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}>
+                                  <td className="py-2 px-3 font-semibold text-slate-800 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.consumersAr : row.consumers}</td>
+                                  <td className="py-2 px-3 text-center font-bold text-[#1E3A8A] border-b border-slate-100" dir="ltr">{row.ks}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -1378,26 +1356,28 @@ export const MasterDetailStandardsModal: React.FC<MasterDetailStandardsModalProp
                         </div>
                       </div>
 
-                      {/* Fig B12 */}
+                      {/* Fig B12 - Distribution Boards [Circuits, Ks] */}
                       <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
                         <div className="sticky top-0 z-20 bg-slate-100 px-3 py-2 border-b border-slate-200">
-                          <h4 className="font-bold text-slate-900 text-xs">Fig. B12: Number of circuits</h4>
+                          <h4 className="font-bold text-slate-900 text-xs">
+                            {isAr ? 'شكل B12 - لوحات التوزيع' : 'Fig B12 - Distribution Boards'}
+                          </h4>
                         </div>
                         <div className="overflow-x-auto relative table-scrollbar">
                           <table className="w-full text-xs border-separate border-spacing-0">
                             <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                               <tr className="bg-slate-100 font-bold">
-                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-2.5 border-b-2 border-r border-slate-300 text-left">From</th>
-                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-2.5 border-b-2 border-r border-slate-300 text-left">To</th>
-                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-2.5 border-b-2 border-slate-300 text-center font-extrabold text-[#1E3A8A]">Ks</th>
+                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l text-left rtl:text-right">
+                                  {isAr ? 'الدوائر (Circuits)' : 'Circuits'}
+                                </th>
+                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-3 border-b-2 border-slate-300 text-center font-extrabold text-[#1E3A8A]">Ks</th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100 font-mono text-xs">
                               {IEC_KS_FIG_B12.map((row, idx) => (
-                                <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFC]'}>
-                                  <td className="py-1.5 px-2.5 border-b border-r border-slate-100" dir="ltr">{row.from}</td>
-                                  <td className="py-1.5 px-2.5 border-b border-r border-slate-100" dir="ltr">{row.to}</td>
-                                  <td className="py-1.5 px-2.5 text-center font-bold text-[#1E3A8A] border-b" dir="ltr">{row.ks.toFixed(2)}</td>
+                                <tr key={idx} className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}>
+                                  <td className="py-2 px-3 font-semibold text-slate-800 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.circuitsAr : row.circuits}</td>
+                                  <td className="py-2 px-3 text-center font-bold text-[#1E3A8A] border-b border-slate-100" dir="ltr">{row.ks}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -1405,24 +1385,28 @@ export const MasterDetailStandardsModal: React.FC<MasterDetailStandardsModalProp
                         </div>
                       </div>
 
-                      {/* Fig B13 */}
+                      {/* Fig B13 - Circuit Function [Function, Ks] */}
                       <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
                         <div className="sticky top-0 z-20 bg-slate-100 px-3 py-2 border-b border-slate-200">
-                          <h4 className="font-bold text-slate-900 text-xs">Fig. B13: Circuit function</h4>
+                          <h4 className="font-bold text-slate-900 text-xs">
+                            {isAr ? 'شكل B13 - وظيفة الدائرة' : 'Fig B13 - Circuit Function'}
+                          </h4>
                         </div>
                         <div className="overflow-x-auto relative table-scrollbar">
                           <table className="w-full text-xs border-separate border-spacing-0">
                             <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                               <tr className="bg-slate-100 font-bold">
-                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-2.5 border-b-2 border-r border-slate-300 text-left">Function</th>
-                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-2.5 border-b-2 border-slate-300 text-center font-extrabold text-[#1E3A8A]">Ks</th>
+                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l text-left rtl:text-right">
+                                  {isAr ? 'الوظيفة (Function)' : 'Function'}
+                                </th>
+                                <th className="sticky top-0 z-20 bg-slate-100 py-2 px-3 border-b-2 border-slate-300 text-center font-extrabold text-[#1E3A8A]">Ks</th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100 text-xs">
                               {IEC_KS_FIG_B13.map((row, idx) => (
-                                <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFC]'}>
-                                  <td className="py-2 px-2.5 font-semibold text-slate-800 border-b border-r border-slate-100">{isAr ? row.functionNameAr : row.functionName}</td>
-                                  <td className="py-2 px-2.5 text-center font-mono font-bold text-[#1E3A8A] border-b">{row.ks}</td>
+                                <tr key={idx} className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}>
+                                  <td className="py-2 px-3 font-semibold text-slate-800 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{isAr ? row.functionNameAr : row.functionName}</td>
+                                  <td className="py-2 px-3 text-center font-mono font-bold text-[#1E3A8A] border-b border-slate-100" dir="ltr">{row.ks}</td>
                                 </tr>
                               ))}
                             </tbody>

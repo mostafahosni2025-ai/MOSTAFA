@@ -371,16 +371,16 @@ export const IecModal: React.FC<IecModalProps> = ({
                 </span>
               </div>
 
-              {/* Part A: Equipment Simultaneity Factors */}
+              {/* Sub-table A: Equipment SFs [Equipment, SF] */}
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <h4 className="font-extrabold text-slate-900 text-sm sm:text-base">
                     {isAr
-                      ? 'الجزء أ: معاملات تزامن المعدات (Escalator, Elevator, Sanitary, Heating, A/C)'
-                      : 'Part A: Equipment Simultaneity Factors (Escalator, Elevator, Sanitary, Heating, A/C)'}
+                      ? 'الجدول أ: معاملات تزامن المعدات (Equipment SFs)'
+                      : 'Sub-table A: Equipment Simultaneity Factors (Equipment SFs)'}
                   </h4>
                   <span className="text-xs font-bold text-[#1E3A8A] font-mono bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
-                    Part A: Equipment
+                    Equipment SFs
                   </span>
                 </div>
                 <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
@@ -391,14 +391,8 @@ export const IecModal: React.FC<IecModalProps> = ({
                           <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
                             {isAr ? 'المعدة (Equipment)' : 'Equipment'}
                           </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-blue-900">
-                            {isAr ? 'معامل التزامن (SF)' : 'SF'}
-                          </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                            {isAr ? 'القدرة النمطية' : 'Typical Rating'}
-                          </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 border-b-2 border-slate-300 font-bold text-slate-800">
-                            {isAr ? 'ملاحظات التشغيل' : 'Operational Notes'}
+                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 text-center border-b-2 border-slate-300 font-bold text-blue-900">
+                            SF
                           </th>
                         </tr>
                       </thead>
@@ -411,14 +405,8 @@ export const IecModal: React.FC<IecModalProps> = ({
                             <td className="py-2.5 px-4 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
                               {isAr ? row.equipmentAr : row.equipment}
                             </td>
-                            <td className="py-2.5 px-3.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
+                            <td className="py-2.5 px-4 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100">
                               {row.sf}
-                            </td>
-                            <td className="py-2.5 px-4 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
-                              {isAr ? row.typicalRatingAr : row.typicalRating}
-                            </td>
-                            <td className="py-2.5 px-4 text-slate-600 border-b border-slate-100">
-                              {isAr ? row.notesAr : row.notes}
                             </td>
                           </tr>
                         ))}
@@ -428,16 +416,16 @@ export const IecModal: React.FC<IecModalProps> = ({
                 </div>
               </div>
 
-              {/* Part B: Space Heating, Cooling & PV */}
+              {/* Sub-table B: Heating/Cooling Densities [Item, Unit, Min, Max, Average] */}
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <h4 className="font-extrabold text-slate-900 text-sm sm:text-base">
                     {isAr
-                      ? 'الجزء ب: أنظمة التدفئة والتبريد والطاقة الكهروضوئية (Floor heating, Night storage, PV)'
-                      : 'Part B: Heating, Cooling & Renewables (Floor heating, Night storage, PV)'}
+                      ? 'الجدول ب: كثافات التدفئة والتبريد والطاقة الشمسية'
+                      : 'Sub-table B: Heating / Cooling Densities'}
                   </h4>
                   <span className="text-xs font-bold text-[#1E3A8A] font-mono bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
-                    Part B: Heating / PV
+                    Heating / Cooling
                   </span>
                 </div>
                 <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
@@ -457,11 +445,8 @@ export const IecModal: React.FC<IecModalProps> = ({
                           <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
                             Max
                           </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-blue-900">
+                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-slate-300 font-bold text-blue-900">
                             Average
-                          </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 border-b-2 border-slate-300 font-bold text-slate-800">
-                            {isAr ? 'الملاحظات الفنية' : 'Engineering Notes'}
                           </th>
                         </tr>
                       </thead>
@@ -483,11 +468,8 @@ export const IecModal: React.FC<IecModalProps> = ({
                             <td className="py-2.5 px-3.5 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
                               {row.max}
                             </td>
-                            <td className="py-2.5 px-3.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
+                            <td className="py-2.5 px-3.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100">
                               {row.average}
-                            </td>
-                            <td className="py-2.5 px-4 text-slate-600 border-b border-slate-100">
-                              {isAr ? row.notesAr : row.notes}
                             </td>
                           </tr>
                         ))}
@@ -520,16 +502,16 @@ export const IecModal: React.FC<IecModalProps> = ({
                 </span>
               </div>
 
-              {/* Part A: Lighting Load Density & Illuminance Levels */}
+              {/* Sub-table A: Fluorescent Lighting [Application, VA/m², Lux] */}
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <h4 className="font-extrabold text-slate-900 text-sm sm:text-base">
                     {isAr
-                      ? 'الجزء أ: الإنارة (Roads, Heavy-duty, Office work, Fine work) - VA/m² و Lux'
-                      : 'Part A: Lighting Load Density & Illuminance (Roads, Heavy-duty, Office work, Fine work)'}
+                      ? 'الجدول أ: الإنارة الفلورسنت (Fluorescent Lighting)'
+                      : 'Sub-table A: Fluorescent Lighting'}
                   </h4>
                   <span className="text-xs font-bold text-[#1E3A8A] font-mono bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
-                    Part A: Lighting
+                    Lighting
                   </span>
                 </div>
                 <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
@@ -538,16 +520,13 @@ export const IecModal: React.FC<IecModalProps> = ({
                       <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                         <tr className="text-slate-800 font-bold bg-slate-100">
                           <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                            {isAr ? 'تطبيق الإنارة' : 'Lighting Application'}
+                            {isAr ? 'التطبيق (Application)' : 'Application'}
                           </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-blue-900">
+                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-blue-900">
                             VA/m²
                           </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-amber-700">
-                            Lux (E_m)
-                          </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 border-b-2 border-slate-300 font-bold text-slate-800">
-                            {isAr ? 'المعيار المرجعي' : 'Standard Target / Reference'}
+                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 text-center border-b-2 border-slate-300 font-bold text-amber-700">
+                            Lux
                           </th>
                         </tr>
                       </thead>
@@ -560,14 +539,11 @@ export const IecModal: React.FC<IecModalProps> = ({
                             <td className="py-2.5 px-4 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
                               {isAr ? row.applicationAr : row.application}
                             </td>
-                            <td className="py-2.5 px-3.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
+                            <td className="py-2.5 px-4 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
                               {row.vaPerM2}
                             </td>
-                            <td className="py-2.5 px-3.5 text-center font-mono font-bold text-amber-700 bg-amber-50/30 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
+                            <td className="py-2.5 px-4 text-center font-mono font-bold text-amber-700 bg-amber-50/30 border-b border-slate-100">
                               {row.lux}
-                            </td>
-                            <td className="py-2.5 px-4 text-slate-600 border-b border-slate-100">
-                              {isAr ? row.standardTargetAr : row.standardTarget}
                             </td>
                           </tr>
                         ))}
@@ -577,40 +553,34 @@ export const IecModal: React.FC<IecModalProps> = ({
                 </div>
               </div>
 
-              {/* Part B: Small Power / Socket-Outlets */}
+              {/* Sub-table B: Power Circuits [Application, Min VA/m², Max VA/m², Avg VA/m²] */}
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <h4 className="font-extrabold text-slate-900 text-sm sm:text-base">
                     {isAr
-                      ? 'الجزء ب: المقابس وقوى الأجهزة (Ventilation, Heaters, Offices, Workshops) - Min, Max, Average'
-                      : 'Part B: Small Power & Receptacles (Ventilation, Heaters, Offices, Workshops)'}
+                      ? 'الجدول ب: دوائر القوى (Power Circuits)'
+                      : 'Sub-table B: Power Circuits'}
                   </h4>
                   <span className="text-xs font-bold text-[#1E3A8A] font-mono bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
-                    Part B: Small Power
+                    Power Circuits
                   </span>
                 </div>
                 <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
-                  <div className="overflow-x-auto max-h-[300px] overflow-y-auto relative table-scrollbar">
+                  <div className="overflow-x-auto max-h-[340px] overflow-y-auto relative table-scrollbar">
                     <table className="w-full text-left rtl:text-right text-xs sm:text-sm border-separate border-spacing-0">
                       <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                         <tr className="text-slate-800 font-bold bg-slate-100">
                           <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                            {isAr ? 'تطبيق القوى' : 'Power Application'}
-                          </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-4 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                            {isAr ? 'التفاصيل' : 'Details'}
-                          </th>
-                          <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                            {isAr ? 'الوحدة' : 'Unit'}
+                            {isAr ? 'التطبيق (Application)' : 'Application'}
                           </th>
                           <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                            Min
+                            Min VA/m²
                           </th>
                           <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-800">
-                            Max
+                            Max VA/m²
                           </th>
                           <th className="sticky top-0 z-20 bg-slate-100 py-3 px-3.5 text-center border-b-2 border-slate-300 font-bold text-blue-900">
-                            Average
+                            Avg VA/m²
                           </th>
                         </tr>
                       </thead>
@@ -623,20 +593,14 @@ export const IecModal: React.FC<IecModalProps> = ({
                             <td className="py-2.5 px-4 font-bold text-slate-900 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
                               {isAr ? row.applicationAr : row.application}
                             </td>
-                            <td className="py-2.5 px-4 text-slate-600 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
-                              {isAr ? row.detailsAr : row.details}
-                            </td>
-                            <td className="py-2.5 px-3 text-center font-mono font-bold text-slate-500 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
-                              {row.unit}
+                            <td className="py-2.5 px-3.5 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
+                              {row.minVaPerM2}
                             </td>
                             <td className="py-2.5 px-3.5 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
-                              {row.min}
-                            </td>
-                            <td className="py-2.5 px-3.5 text-center font-mono text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
-                              {row.max}
+                              {row.maxVaPerM2}
                             </td>
                             <td className="py-2.5 px-3.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100">
-                              {row.average}
+                              {row.avgVaPerM2}
                             </td>
                           </tr>
                         ))}
@@ -671,26 +635,23 @@ export const IecModal: React.FC<IecModalProps> = ({
 
               {/* Three Real Tables: Fig. B10, Fig. B12, and Fig. B13 */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                {/* 1. Fig. B10: Number of Consumers */}
+                {/* 1. Fig B10 - Apartments [Consumers, Ks] */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <h4 className="font-bold text-slate-900 text-sm">
-                      {isAr ? 'شكل B10: عدد المستهلكين' : 'Fig. B10: Number of consumers'}
+                      {isAr ? 'شكل B10 - الشقق السكنية' : 'Fig B10 - Apartments'}
                     </h4>
                     <span className="text-[10px] font-mono font-bold bg-slate-200 px-2 py-0.5 rounded text-slate-700">
                       IEC B10
                     </span>
                   </div>
                   <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
-                    <div className="overflow-x-auto max-h-[380px] overflow-y-auto relative table-scrollbar">
+                    <div className="overflow-x-auto max-h-[400px] overflow-y-auto relative table-scrollbar">
                       <table className="w-full text-left rtl:text-right text-xs border-separate border-spacing-0">
                         <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                           <tr className="text-slate-800 font-bold bg-slate-100">
                             <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                              {isAr ? 'من (From)' : 'From'}
-                            </th>
-                            <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                              {isAr ? 'إلى (To)' : 'To'}
+                              {isAr ? 'المستهلكون (Consumers)' : 'Consumers'}
                             </th>
                             <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-slate-300 font-extrabold text-[#1E3A8A]">
                               Ks
@@ -703,10 +664,11 @@ export const IecModal: React.FC<IecModalProps> = ({
                               key={idx}
                               className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}
                             >
-                              <td className="py-2 px-3 text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.from}</td>
-                              <td className="py-2 px-3 text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">{row.to}</td>
+                              <td className="py-2 px-3 font-semibold text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
+                                {isAr ? row.consumersAr : row.consumers}
+                              </td>
                               <td className="py-2 px-3 text-center font-extrabold text-[#1E3A8A] border-b border-slate-100" dir="ltr">
-                                {row.ks.toFixed(2)}
+                                {row.ks}
                               </td>
                             </tr>
                           ))}
@@ -716,26 +678,23 @@ export const IecModal: React.FC<IecModalProps> = ({
                   </div>
                 </div>
 
-                {/* 2. Fig. B12: Number of Circuits */}
+                {/* 2. Fig B12 - Distribution Boards [Circuits, Ks] */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <h4 className="font-bold text-slate-900 text-sm">
-                      {isAr ? 'شكل B12: عدد الدوائر باللوحة' : 'Fig. B12: Number of circuits'}
+                      {isAr ? 'شكل B12 - لوحات التوزيع' : 'Fig B12 - Distribution Boards'}
                     </h4>
                     <span className="text-[10px] font-mono font-bold bg-slate-200 px-2 py-0.5 rounded text-slate-700">
                       IEC B12
                     </span>
                   </div>
                   <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
-                    <div className="overflow-x-auto max-h-[380px] overflow-y-auto relative table-scrollbar">
+                    <div className="overflow-x-auto max-h-[400px] overflow-y-auto relative table-scrollbar">
                       <table className="w-full text-left rtl:text-right text-xs border-separate border-spacing-0">
                         <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                           <tr className="text-slate-800 font-bold bg-slate-100">
                             <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                              {isAr ? 'من (From)' : 'From'}
-                            </th>
-                            <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                              {isAr ? 'إلى (To)' : 'To'}
+                              {isAr ? 'الدوائر (Circuits)' : 'Circuits'}
                             </th>
                             <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 text-center border-b-2 border-slate-300 font-extrabold text-[#1E3A8A]">
                               Ks
@@ -748,10 +707,11 @@ export const IecModal: React.FC<IecModalProps> = ({
                               key={idx}
                               className={idx % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-[#F8FAFC] hover:bg-blue-50/40'}
                             >
-                              <td className="py-2 px-3 text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l" dir="ltr">{row.from}</td>
-                              <td className="py-2 px-3 text-slate-700 border-b border-slate-100 rtl:border-r-0 rtl:border-l" dir="ltr">{row.to}</td>
+                              <td className="py-2 px-3 font-semibold text-slate-700 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
+                                {isAr ? row.circuitsAr : row.circuits}
+                              </td>
                               <td className="py-2 px-3 text-center font-extrabold text-[#1E3A8A] border-b border-slate-100" dir="ltr">
-                                {row.ks.toFixed(2)}
+                                {row.ks}
                               </td>
                             </tr>
                           ))}
@@ -761,23 +721,23 @@ export const IecModal: React.FC<IecModalProps> = ({
                   </div>
                 </div>
 
-                {/* 3. Fig. B13: Circuit Function */}
+                {/* 3. Fig B13 - Circuit Function [Function, Ks] */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <h4 className="font-bold text-slate-900 text-sm">
-                      {isAr ? 'شكل B13: وظيفة الدائرة' : 'Fig. B13: Circuit function'}
+                      {isAr ? 'شكل B13 - وظيفة الدائرة' : 'Fig B13 - Circuit Function'}
                     </h4>
                     <span className="text-[10px] font-mono font-bold bg-slate-200 px-2 py-0.5 rounded text-slate-700">
                       IEC B13
                     </span>
                   </div>
                   <div className="bg-white rounded-xl border border-slate-300 shadow-2xs overflow-hidden">
-                    <div className="overflow-x-auto max-h-[380px] overflow-y-auto relative table-scrollbar">
+                    <div className="overflow-x-auto max-h-[400px] overflow-y-auto relative table-scrollbar">
                       <table className="w-full text-left rtl:text-right text-xs border-separate border-spacing-0">
                         <thead className="sticky top-0 z-20 bg-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.06)]">
                           <tr className="text-slate-800 font-bold bg-slate-100">
                             <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-3 border-b-2 border-r border-slate-300 rtl:border-r-0 rtl:border-l font-bold text-slate-900">
-                              {isAr ? 'وظيفة الدائرة' : 'Function'}
+                              {isAr ? 'الوظيفة (Function)' : 'Function'}
                             </th>
                             <th className="sticky top-0 z-20 bg-slate-100 py-2.5 px-2.5 text-center border-b-2 border-slate-300 font-extrabold text-[#1E3A8A]">
                               Ks
@@ -793,7 +753,7 @@ export const IecModal: React.FC<IecModalProps> = ({
                               <td className="py-2 px-3 font-semibold text-slate-800 border-b border-r border-slate-100 rtl:border-r-0 rtl:border-l">
                                 {isAr ? row.functionNameAr : row.functionName}
                               </td>
-                              <td className="py-2 px-2.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100">
+                              <td className="py-2 px-2.5 text-center font-mono font-extrabold text-[#1E3A8A] border-b border-slate-100" dir="ltr">
                                 {row.ks}
                               </td>
                             </tr>

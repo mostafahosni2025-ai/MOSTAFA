@@ -331,3 +331,111 @@ export const SAUDI_C2_400V_TABLE: BreakerSizingRow[] = [
   { area: 3700, kva: 631, breakerA: 800 },
   { area: 3800, kva: 640, breakerA: 800 }
 ];
+
+export type SaudiC1C2Category = 'C1' | 'C2';
+export type SaudiVoltageOption = '220V' | '230V' | '400V' | '220' | '230' | '400' | 220 | 230 | 400;
+
+export interface SaudiC1C2TableRow extends BreakerSizingRow {
+  category: SaudiC1C2Category;
+  voltage: '230V' | '400V';
+}
+
+export interface SaudiC1C2LookupResult {
+  category: SaudiC1C2Category;
+  voltage: '230V' | '400V';
+  inputArea: number;
+  matchedArea: number;
+  connectedLoadKva: number;
+  circuitBreakerRating: number;
+  exceedsTableLimit: boolean;
+}
+
+const normalizeSaudiVoltage = (voltage: SaudiVoltageOption): '230V' | '400V' => {
+  const vStr = String(voltage).trim();
+  return vStr.includes('400') ? '400V' : '230V';
+};
+
+export const SAUDI_C1_C2_COMBINED_TABLE: SaudiC1C2TableRow[] = [
+  ...SAUDI_C1_220V_TABLE.map((row) => ({ ...row, category: 'C1' as const, voltage: '230V' as const })),
+  ...SAUDI_C1_400V_TABLE.map((row) => ({ ...row, category: 'C1' as const, voltage: '400V' as const })),
+  ...SAUDI_C2_220V_TABLE.map((row) => ({ ...row, category: 'C2' as const, voltage: '230V' as const })),
+  ...SAUDI_C2_400V_TABLE.map((row) => ({ ...row, category: 'C2' as const, voltage: '400V' as const })),
+];
+
+/**
+ * Constructed Area Lookup Logic (Round Up / Ceiling) for Saudi Code C1 & C2:
+ * 1. Filter the table data to find the matching category (C1/C2) and voltage (230V/220V or 400V).
+ * 2. Filter rows where Table Area >= Input Area.
+ * 3. Sort matches ascending by area and pick the FIRST one (exact match or closest higher value).
+ * 4. Extract Connected Load (kVA) and Circuit Breaker Rating (A) from the chosen row.
+ */
+export const lookupSaudiC1C2ByArea = (
+  category: SaudiC1C2Category,
+  constructedArea: number,
+  voltage: SaudiVoltageOption = '400V'
+): SaudiC1C2LookupResult => {
+  const normalizedVoltage = normalizeSaudiVoltage(voltage);
+  const safeInputArea = Math.max(0, Number(constructedArea) || 0);
+
+  if (safeInputArea <= 0) {
+    return {
+      category,
+      voltage: normalizedVoltage,
+      inputArea: 0,
+      matchedArea: 0,
+      connectedLoadKva: 0,
+      circuitBreakerRating: 0,
+      exceedsTableLimit: false,
+    };
+  }
+
+  // 1. Filter table data by category and matching voltage
+  const voltageRows = SAUDI_C1_C2_COMBINED_TABLE.filter(
+    (row) => row.category === category && row.voltage === normalizedVoltage
+  );
+
+  // 2. Find rows where Table Area >= Input Area
+  const ceilingMatches = voltageRows
+    .filter((row) => row.area >= safeInputArea)
+    // 3. Sort ascending by area and pick the FIRST one (closest higher or equal value)
+    .sort((a, b) => a.area - b.area);
+
+  if (ceilingMatches.length > 0) {
+    const chosenRow = ceilingMatches[0];
+    // 4. Extract Connected Load (kVA) and Circuit Breaker Rating
+    return {
+      category,
+      voltage: normalizedVoltage,
+      inputArea: safeInputArea,
+      matchedArea: chosenRow.area,
+      connectedLoadKva: chosenRow.kva,
+      circuitBreakerRating: chosenRow.breakerA,
+      exceedsTableLimit: false,
+    };
+  }
+
+  // Fallback when area exceeds the maximum area in the table (SEC DPS Sec 2.4: C1=116 VA/m², C2=172 VA/m²)
+  const sortedDesc = [...voltageRows].sort((a, b) => b.area - a.area);
+  const highestRow = sortedDesc[0] || { area: safeInputArea, kva: 0, breakerA: 800 };
+  const vaPerM2 = category === 'C1' ? 116 : 172;
+  return {
+    category,
+    voltage: normalizedVoltage,
+    inputArea: safeInputArea,
+    matchedArea: highestRow.area,
+    connectedLoadKva: Number(((safeInputArea * vaPerM2) / 1000).toFixed(2)),
+    circuitBreakerRating: highestRow.breakerA,
+    exceedsTableLimit: true,
+  };
+};
+
+export const lookupSaudiC1ByArea = (
+  constructedArea: number,
+  voltage: SaudiVoltageOption = '400V'
+): SaudiC1C2LookupResult => lookupSaudiC1C2ByArea('C1', constructedArea, voltage);
+
+export const lookupSaudiC2ByArea = (
+  constructedArea: number,
+  voltage: SaudiVoltageOption = '400V'
+): SaudiC1C2LookupResult => lookupSaudiC1C2ByArea('C2', constructedArea, voltage);
+
