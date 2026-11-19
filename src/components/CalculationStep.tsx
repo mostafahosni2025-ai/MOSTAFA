@@ -30,6 +30,7 @@ export type StandardId = 'egypt' | 'saudi' | 'europe' | 'usa';
 
 export interface CalculationStepProps {
   onBackToOverview: () => void;
+  onBackToHome?: () => void;
   lang: Language;
   isDarkMode?: boolean;
   // Lifted persistent project state from App.tsx
@@ -694,6 +695,7 @@ export const handleNumericPaste = (e: React.ClipboardEvent<HTMLInputElement>) =>
 
 export const CalculationStep: React.FC<CalculationStepProps> = ({
   onBackToOverview,
+  onBackToHome,
   lang,
   isDarkMode,
   projectName,
@@ -4626,11 +4628,21 @@ export const CalculationStep: React.FC<CalculationStepProps> = ({
       {/* 1. TOP HEADER */}
       <div className="bg-white dark:bg-gray-800 border-b border-slate-200/90 dark:border-gray-700 shadow-2xs sticky top-[57px] z-30 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5">
+            {onBackToHome && (
+              <button
+                type="button"
+                onClick={onBackToHome}
+                className="px-3.5 py-2 rounded-xl border border-blue-200 dark:border-blue-800/80 bg-blue-50/70 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-[#1E3A8A] dark:text-blue-300 text-xs sm:text-sm font-bold flex items-center gap-2 transition-colors cursor-pointer shadow-2xs whitespace-nowrap"
+              >
+                <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
+                <span>{isAr ? 'العودة للصفحة الرئيسية' : 'Back to Home Page'}</span>
+              </button>
+            )}
             <button
               type="button"
               onClick={onBackToOverview}
-              className="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-slate-100 dark:hover:bg-gray-700 active:bg-slate-200 text-slate-800 dark:text-gray-200 text-xs sm:text-sm font-bold flex items-center gap-2 transition-colors cursor-pointer shadow-2xs"
+              className="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-slate-100 dark:hover:bg-gray-700 active:bg-slate-200 text-slate-800 dark:text-gray-200 text-xs sm:text-sm font-bold flex items-center gap-2 transition-colors cursor-pointer shadow-2xs whitespace-nowrap"
             >
               <ArrowLeft className="w-4 h-4 rtl:rotate-180 text-slate-600 dark:text-gray-400" />
               <span>{isAr ? 'العودة لنظرة عامة' : 'Return to Overview'}</span>

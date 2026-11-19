@@ -6,6 +6,8 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { HomePage } from './components/HomePage';
+import { PublisherPage } from './components/PublisherPage';
 import { MethodologyCard } from './components/MethodologyCard';
 import { MasterDetailStandardsModal } from './components/MasterDetailStandardsModal';
 import { AmericanModal } from './components/AmericanModal';
@@ -27,11 +29,12 @@ import {
 } from './components/CalculationStep';
 import { SaudiVoltageOption } from './data/c1c2TablesData';
 import { STANDARDS_DATA, StandardMethodology } from './data/standardsData';
-import { ChevronsUpDown } from 'lucide-react';
+import { ChevronsUpDown, ArrowLeft } from 'lucide-react';
 import { Language, TRANSLATIONS } from './data/translations';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('en'); // Default is ENGLISH as requested
+  const [currentView, setCurrentView] = useState<'home' | 'load-estimation' | 'publisher'>('home');
   const [currentStep, setCurrentStep] = useState<'overview' | 'calculation'>('overview');
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     if (typeof document !== 'undefined') {
@@ -234,6 +237,11 @@ export default function App() {
     >
       {/* 1. Header (Top): Dark Blue (#1E3A8A) with Language & Dark Mode Switcher */}
       <Header
+        currentView={currentView}
+        onBackToHome={() => {
+          setCurrentView('home');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         currentStep={currentStep}
         onNavigate={(step) => setCurrentStep(step)}
         lang={lang}
@@ -243,9 +251,50 @@ export default function App() {
       />
 
       {/* Main View Router */}
-      {currentStep === 'overview' ? (
+      {currentView === 'home' ? (
+        <HomePage
+          onOpenLoadEstimation={() => {
+            setCurrentView('load-estimation');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onOpenPublisher={() => {
+            setCurrentView('publisher');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          lang={lang}
+          isDarkMode={isDarkMode}
+        />
+      ) : currentView === 'publisher' ? (
+        <PublisherPage
+          onBack={() => {
+            setCurrentView('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          lang={lang}
+          isDarkMode={isDarkMode}
+        />
+      ) : currentStep === 'overview' ? (
         <main className="flex-1 flex flex-col justify-between">
           <div className="max-w-7xl mx-auto px-6 py-8 sm:py-10 w-full">
+            {/* Back to Home Page link bar */}
+            <div className="mb-5">
+              <button
+                type="button"
+                onClick={() => {
+                  setCurrentView('home');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border text-xs sm:text-sm font-bold shadow-2xs transition-colors cursor-pointer ${
+                  isDarkMode
+                    ? 'bg-[#1F2937] hover:bg-slate-700 text-blue-300 border-slate-700'
+                    : 'bg-white hover:bg-slate-50 text-[#1E3A8A] border-slate-300'
+                }`}
+              >
+                <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
+                <span>{lang === 'ar' ? 'العودة للصفحة الرئيسية' : 'Back to Home Page'}</span>
+              </button>
+            </div>
+
             {/* 3. Top Section */}
             <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div className="space-y-2">
@@ -309,6 +358,10 @@ export default function App() {
         /* Step 2 View: Calculation & Selection Engine */
         <CalculationStep
           onBackToOverview={() => setCurrentStep('overview')}
+          onBackToHome={() => {
+            setCurrentView('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           lang={lang}
           isDarkMode={isDarkMode}
           projectName={projectName}
