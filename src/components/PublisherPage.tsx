@@ -14,6 +14,7 @@ import {
   Calendar,
   ExternalLink,
   CheckCircle2,
+  Rocket,
 } from 'lucide-react';
 import { Language } from '../data/translations';
 
@@ -372,22 +373,26 @@ export const PublisherPage: React.FC<PublisherPageProps> = ({
               {/* Translucent Contact Card */}
               <div className="bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-sm rounded-xl p-3 space-y-2 text-xs sm:text-sm text-white min-w-[255px] transition-colors">
                 <a
-                  href="mailto:mostafhosni959@gmail.com"
-                  className="flex items-center gap-2 hover:underline font-medium"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=mostafahosni959@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:underline hover:text-blue-200 font-medium transition-colors"
                 >
                   <Mail className="w-4 h-4 text-amber-300 shrink-0" />
                   <span dir="ltr" className="break-all sm:whitespace-nowrap">
-                    mostafhosni959@gmail.com
+                    mostafahosni959@gmail.com
                   </span>
                 </a>
 
                 <a
-                  href="mailto:mostafhosni2025@gmail.com"
-                  className="flex items-center gap-2 hover:underline font-medium"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=mostafahosni2025@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:underline hover:text-blue-200 font-medium transition-colors"
                 >
                   <Mail className="w-4 h-4 text-amber-300 shrink-0" />
                   <span dir="ltr" className="break-all sm:whitespace-nowrap">
-                    mostafhosni2025@gmail.com
+                    mostafahosni2025@gmail.com
                   </span>
                 </a>
 
@@ -595,40 +600,93 @@ export const PublisherPage: React.FC<PublisherPageProps> = ({
             </div>
           </div>
 
-          {/* Column 2: Technical Stack & Tools */}
-          <div className="rounded-2xl bg-white dark:bg-gray-800 border border-slate-200/90 dark:border-gray-700 shadow-2xs p-6 space-y-6 transition-colors">
-            <div className="flex items-center gap-3 pb-4 border-b border-slate-200/80 dark:border-gray-700">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200/80 dark:border-blue-800/60 text-[#1E3A8A] dark:text-blue-300 flex items-center justify-center shrink-0">
-                <Cpu className="w-5 h-5" />
+          {/* Column 2: Technical Stack & Tools + Vision & Future Roadmap */}
+          <div className="space-y-6">
+            <div className="rounded-2xl bg-white dark:bg-gray-800 border border-slate-200/90 dark:border-gray-700 shadow-2xs p-6 space-y-6 transition-colors">
+              <div className="flex items-center gap-3 pb-4 border-b border-slate-200/80 dark:border-gray-700">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200/80 dark:border-blue-800/60 text-[#1E3A8A] dark:text-blue-300 flex items-center justify-center shrink-0">
+                  <Cpu className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                  {isAr ? 'المهارات والأدوات التقنية' : 'Technical Stack & Tools'}
+                </h3>
               </div>
-              <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                {isAr ? 'المهارات والأدوات التقنية' : 'Technical Stack & Tools'}
-              </h3>
+
+              <div className="space-y-5">
+                {TECHNICAL_GROUPS.map((group) => {
+                  const GroupIcon = group.icon;
+                  return (
+                    <div key={group.id} className="space-y-3">
+                      <div className="flex items-center gap-2 text-sm font-extrabold text-slate-800 dark:text-slate-200">
+                        <GroupIcon className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400 shrink-0" />
+                        <h4>{isAr ? group.titleAr : group.titleEn}</h4>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {group.items.map((item) => (
+                          <span
+                            key={item}
+                            className={`inline-flex items-center px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border ${group.accentClasses}`}
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="space-y-5">
-              {TECHNICAL_GROUPS.map((group) => {
-                const GroupIcon = group.icon;
-                return (
-                  <div key={group.id} className="space-y-3">
-                    <div className="flex items-center gap-2 text-sm font-extrabold text-slate-800 dark:text-slate-200">
-                      <GroupIcon className="w-4 h-4 text-[#1E3A8A] dark:text-blue-400 shrink-0" />
-                      <h4>{isAr ? group.titleAr : group.titleEn}</h4>
-                    </div>
+            {/* Vision & Future Roadmap Card (Relocated directly below Technical Stack & Tools) */}
+            <div className="rounded-2xl bg-blue-50/50 dark:bg-slate-800/90 border-2 border-blue-200/80 dark:border-blue-800/60 shadow-sm p-6 space-y-5 transition-colors">
+              <div className="flex items-center gap-3 pb-4 border-b border-blue-200/70 dark:border-blue-800/50">
+                <div className="w-10 h-10 rounded-xl bg-[#1E3A8A] text-amber-300 flex items-center justify-center shrink-0 shadow-xs">
+                  <Rocket className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight uppercase">
+                  {isAr ? 'الرؤية وخارطة الطريق المستقبلية' : 'VISION & FUTURE ROADMAP'}
+                </h3>
+              </div>
 
-                    <div className="flex flex-wrap gap-2">
-                      {group.items.map((item) => (
-                        <span
-                          key={item}
-                          className={`inline-flex items-center px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold border ${group.accentClasses}`}
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+              <div className="space-y-3 text-base text-slate-700 dark:text-slate-200 leading-relaxed">
+                {isAr ? (
+                  <>
+                    <p>
+                      أكرّس جهودي لبناء أدوات هندسية متقدمة (إضافات Revit، أكواد AutoCAD LISP، وشيتات إكسل متقدمة) لجعل الحسابات الكهربائية أسرع، أكثر دقة، وأعلى احترافية.
+                    </p>
+                    <p>
+                      خلال الفترة القادمة، سأقوم بنشر مصادر شاملة لكل من أنظمة التيار الخفيف والجهد المنخفض. سيتم تحديث هذه المنصة{' '}
+                      <strong className="text-blue-600 dark:text-blue-400 font-bold">أسبوعياً</strong>{' '}
+                      بناءً على طلبات وملاحظات الاستشاريين والمهندسين.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      I am dedicated to building advanced engineering tools (Revit Add-ins, AutoCAD LISP, and Advanced Excel Sheets) to make electrical calculations faster, more accurate, and highly professional.
+                    </p>
+                    <p>
+                      Over the coming period, I will be publishing comprehensive resources for both Low Current and Low Voltage systems. This platform will be updated{' '}
+                      <strong className="text-blue-600 dark:text-blue-400 font-bold">weekly</strong>{' '}
+                      based on the specific requests and feedback of senior consultants and engineers.
+                    </p>
+                  </>
+                )}
+              </div>
+
+              {/* Sadaqah Jariyah Dedication Box */}
+              <div className="rounded-xl bg-amber-50 dark:bg-amber-950/35 border border-amber-200 dark:border-amber-700/60 px-5 py-4 text-center space-y-2.5">
+                <p className="text-sm sm:text-[15px] italic text-amber-900 dark:text-amber-200 leading-relaxed">
+                  This project is a continuous charity (Sadaqah Jariyah) dedicated to the souls of my father, Mr. Hosni El-Khadry, and my grandfather, Haj Khadry Abu El-Ata. I kindly ask for your sincere prayers for them.
+                </p>
+                <p
+                  dir="rtl"
+                  className="text-sm sm:text-base font-bold text-amber-950 dark:text-amber-100 leading-relaxed"
+                >
+                  صدقة جارية على روح والدي الأستاذ حسني الخضري، وجدي الحاج خضري أبوالعطا. برجاء الدعاء لهما.
+                </p>
+              </div>
             </div>
           </div>
         </section>
